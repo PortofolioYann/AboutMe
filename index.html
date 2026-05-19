@@ -1,1610 +1,996 @@
+
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agronomy Culture — SMK Negeri 1 Bulakamba</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;800&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shared Preview</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; width: 100%; overflow: hidden; background: #fff; }
+    iframe { display: block; width: 100%; height: 100%; border: none; }
+  </style>
+</head>
+<body>
+  <iframe
+    srcdoc="<!DOCTYPE html>
+<html lang=&quot;id&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>Aqil Hayyan M.P — Digital Services</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;900&amp;family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,700;1,400&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
 <style>
-*{ margin:0; padding:0; box-sizing:border-box; }
-
-/* ===== INTRO ANIMATION SCREEN ===== */
-#introScreen {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: linear-gradient(135deg, #002200, #004a00, #001a00);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  animation: introBgPulse 5s ease-in-out;
-}
-
-#introScreen::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 80%, rgba(0,180,0,0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(0,100,0,0.2) 0%, transparent 50%);
-  animation: introGlowMove 5s ease-in-out;
-}
-
-@keyframes introBgPulse {
-  0%   { background: linear-gradient(135deg, #001100, #003300, #000d00); }
-  40%  { background: linear-gradient(135deg, #002200, #005500, #001a00); }
-  100% { background: linear-gradient(135deg, #002200, #004a00, #001a00); }
-}
-
-@keyframes introGlowMove {
-  0%   { opacity: 0; }
-  30%  { opacity: 1; }
-  100% { opacity: 1; }
-}
-
-/* Floating leaf particles */
-.intro-particle {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: rgba(144, 238, 144, 0.4);
-  border-radius: 50% 0 50% 0;
-  animation: floatParticle linear infinite;
-  opacity: 0;
-}
-
-@keyframes floatParticle {
-  0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-  10%  { opacity: 0.6; }
-  90%  { opacity: 0.3; }
-  100% { transform: translateY(-20px) rotate(360deg); opacity: 0; }
-}
-
-.intro-logo-wrap {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 28px;
-  animation: introLogoEntry 1s cubic-bezier(0.34,1.56,0.64,1) 0.3s both;
-}
-
-@keyframes introLogoEntry {
-  from { opacity: 0; transform: scale(0.5) translateY(40px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-.intro-logos-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.intro-logo-img {
-  width: 110px;
-  height: 110px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid rgba(144, 238, 144, 0.8);
-  box-shadow:
-    0 0 30px rgba(144, 238, 144, 0.5),
-    0 0 60px rgba(76, 175, 80, 0.25);
-  animation: introLogoGlow 2s ease-in-out 1s infinite alternate;
-  flex-shrink: 0;
-}
-
-.intro-logo-img.atph {
-  border-radius: 0;
-  border: none;
-  background: transparent;
-  box-shadow: none;
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
-  animation: introAtphGlow 2s ease-in-out 1s infinite alternate;
-  flex-shrink: 0;
-}
-
-@keyframes introLogoGlow {
-  from { box-shadow: 0 0 20px rgba(144,238,144,0.4), 0 0 40px rgba(76,175,80,0.15); }
-  to   { box-shadow: 0 0 50px rgba(144,238,144,0.9), 0 0 100px rgba(76,175,80,0.4); }
-}
-
-@keyframes introAtphGlow {
-  from { filter: drop-shadow(0 0 12px rgba(144,238,144,0.5)); }
-  to   { filter: drop-shadow(0 0 30px rgba(144,238,144,1)); }
-}
-
-.intro-divider-dot {
-  width: 5px;
-  height: 10px;
-  background: rgba(144, 238, 144, 0.6);
-  border-radius: 50%;
-  box-shadow: 0 0 15px rgba(144,238,144,0.8);
-}
-
-.intro-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 6vw, 3.8rem);
-  font-weight: 800;
-  color: #fff;
-  text-align: center;
-  letter-spacing: -1px;
-  line-height: 1.1;
-  text-shadow: 0 0 40px rgba(144,238,144,0.5);
-  animation: introTitleFade 1s ease 0.8s both;
-}
-
-.intro-title span { color: #a4ffb0; }
-
-@keyframes introTitleFade {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: none; }
-}
-
-.intro-sub {
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  color: rgba(255,255,255,0.65);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-align: center;
-  animation: introTitleFade 1s ease 1.1s both;
-}
-
-.intro-badge {
-  display: inline-block;
-  background: rgba(76,175,80,0.25);
-  border: 1px solid rgba(144,238,144,0.4);
-  color: #a4ffb0;
-  padding: 6px 22px;
-  border-radius: 999px;
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-family: 'Poppins', sans-serif;
-  animation: introTitleFade 1s ease 1.4s both;
-}
-
-/* Progress bar */
-.intro-progress-wrap {
-  position: absolute;
-  bottom: 60px;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: 220px;
-  z-index: 3;
-  opacity: 0;
-  animation: introProgressAppear 0.5s ease 1.5s forwards;
-}
-
-@keyframes introProgressAppear {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-.intro-progress-bar {
-  height: 3px;
-  background: rgba(255,255,255,0.15);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.intro-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #4caf50, #a4ffb0);
-  border-radius: 999px;
-  animation: introProgressFill 3.5s linear 1.5s both;
-  box-shadow: 0 0 10px rgba(164,255,176,0.8);
-}
-
-@keyframes introProgressFill {
-  from { width: 0%; }
-  to   { width: 100%; }
-}
-
-.intro-progress-label {
-  text-align: center;
-  margin-top: 10px;
-  font-size: 11px;
-  color: rgba(255,255,255,0.45);
-  font-family: 'Poppins', sans-serif;
-  letter-spacing: 1px;
-  white-space: nowrap;
-}
-
-/* Rings animation */
-.intro-rings {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.intro-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(144, 238, 144, 0.08);
-  animation: introRingPulse ease-in-out infinite;
-}
-
-@keyframes introRingPulse {
-  0%   { transform: scale(0.8); opacity: 0; }
-  50%  { opacity: 0.5; }
-  100% { transform: scale(1.3); opacity: 0; }
-}
-
-/* Intro fade out */
-#introScreen.fadeout {
-  animation: introFadeOut 0.8s ease forwards;
-}
-
-@keyframes introFadeOut {
-  from { opacity: 1; transform: scale(1); }
-  to   { opacity: 0; transform: scale(1.05); pointer-events: none; }
-}
-
-/* ===== MAIN BODY ===== */
-body{
-  font-family:'Poppins',sans-serif;
-  background:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470') no-repeat center center fixed;
-  background-size:cover;
-  color:white;
-  overflow-x:hidden;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  width:100%; height:100%;
-  background:linear-gradient(to bottom, rgba(0,55,0,0.88), rgba(0,0,0,0.82));
-  z-index:-1;
-}
-
-/* ===== NAVBAR ===== */
-nav{
-  position:fixed; top:0; width:100%;
-  display:flex; justify-content:center; align-items:center;
-  gap:0;
-  padding:0;
-  background:linear-gradient(to right, rgba(0,60,0,0.95), rgba(0,110,0,0.85));
-  backdrop-filter:blur(14px);
-  z-index:1000;
-  box-shadow:0 4px 24px rgba(0,0,0,0.5);
-  flex-wrap:wrap;
-}
-
-nav button{
-  color:rgba(255,255,255,0.85);
-  background:none;
-  border:none;
-  border-bottom:3px solid transparent;
-  font-family:'Poppins',sans-serif;
-  font-weight:500;
-  font-size:13.5px;
-  cursor:pointer;
-  padding:18px 20px;
-  transition:0.25s;
-  letter-spacing:0.3px;
-}
-nav button:hover{ color:#a4ffb0; }
-nav button.active{ color:#a4ffb0; border-bottom-color:#4caf50; font-weight:600; }
-
-/* ===== SECTIONS ===== */
-.section{
-  display:none;
-  padding:110px 20px 60px;
-  min-height:100vh;
-}
-.section.active{ display:block; animation:fadeUp 0.4s ease; }
-@keyframes fadeUp{ from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
-
-/* ===== CONTAINER ===== */
-.container{
-  max-width:1050px; margin:0 auto;
-  background:rgba(255,255,255,0.07);
-  padding:50px;
-  border-radius:28px;
-  backdrop-filter:blur(18px);
-  box-shadow:0 20px 60px rgba(0,0,0,0.55);
-  border:1px solid rgba(144,238,144,0.12);
-}
-
-/* ===== HERO ===== */
-.hero-header{ text-align:center; margin-bottom:40px; }
-
-.logo-group{
-  display:flex; justify-content:center; align-items:center; gap:30px;
-  margin-bottom:24px; flex-wrap:wrap;
-}
-
-.logo-circle{
-  width:115px; height:115px;
-  object-fit:cover;
-  border-radius:50%;
-  border:4px solid #90ee90;
-  box-shadow:0 0 28px rgba(144,238,144,0.65);
-  transition:0.35s;
-  background:rgba(0,80,0,0.4);
-  vertical-align:middle;
-  flex-shrink:0;
-}
-.logo-circle:hover{ transform:scale(1.09); box-shadow:0 0 45px rgba(144,238,144,1); }
-
-.logo-atph{
-  width:115px; height:115px;
-  object-fit:contain;
-  border:none;
-  background:transparent;
-  filter: drop-shadow(0 0 14px rgba(144,238,144,0.6));
-  transition:0.35s;
-  vertical-align:middle;
-  flex-shrink:0;
-}
-.logo-atph:hover{ transform:scale(1.09); filter: drop-shadow(0 0 28px rgba(144,238,144,1)); }
-
-.hero-title{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2rem,5vw,3.2rem);
-  font-weight:800;
-  line-height:1.1;
-  margin-bottom:6px;
-}
-.hero-title span{ color:#a4ffb0; }
-.hero-sub{ font-size:16px; opacity:0.8; margin-bottom:8px; }
-.hero-badge{
-  display:inline-block;
-  background:rgba(76,175,80,0.3);
-  border:1px solid rgba(144,238,144,0.4);
-  color:#a4ffb0;
-  padding:5px 18px; border-radius:999px;
-  font-size:12px; letter-spacing:1.5px; text-transform:uppercase;
-  margin-bottom:24px;
-}
-
-/* ===== TYPOGRAPHY ===== */
-h1{ font-size:clamp(1.6rem,4vw,2.4rem); margin-bottom:12px; font-family:'Playfair Display',serif; }
-h2{ margin:28px 0 14px; color:#a4ffb0; font-size:1.25rem; }
-p{ line-height:1.85; font-weight:300; opacity:0.9; }
-
-/* ===== GALLERY ===== */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:16px; margin-top:20px;
-}
-.gallery img{
-  width:100%; border-radius:16px;
-  transition:0.4s;
-  box-shadow:0 8px 20px rgba(0,0,0,0.4);
-  background:rgba(0,80,0,0.3);
-  min-height:180px; object-fit:cover;
-}
-.gallery img:hover{ transform:scale(1.04); box-shadow:0 14px 35px rgba(0,0,0,0.6); }
-
-/* ===== BUTTONS ===== */
-.button{
-  margin:8px 6px;
-  padding:10px 22px;
-  border:none; border-radius:999px;
-  background:linear-gradient(135deg,#2e8b57,#3cb371);
-  color:white;
-  cursor:pointer;
-  font-family:'Poppins',sans-serif;
-  font-size:13px; font-weight:600;
-  transition:0.3s;
-  box-shadow:0 4px 14px rgba(0,0,0,0.3);
-}
-.button:hover{ background:linear-gradient(135deg,#3cb371,#57d68d); transform:translateY(-2px); }
-
-/* ===== ALUMNI YEAR BUTTONS ===== */
-.alumni-year-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin: 8px 8px;
-  padding: 14px 28px;
-  border: 2px solid rgba(144,238,144,0.4);
-  border-radius: 16px;
-  background: rgba(255,255,255,0.06);
-  color: white;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  transition: 0.3s;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.25);
-  position: relative;
-  overflow: hidden;
-}
-.alumni-year-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(76,175,80,0.2), rgba(46,139,87,0.2));
-  opacity: 0;
-  transition: 0.3s;
-}
-.alumni-year-btn:hover::before { opacity: 1; }
-.alumni-year-btn:hover {
-  border-color: #90ee90;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.4), 0 0 20px rgba(144,238,144,0.2);
-}
-.alumni-year-btn.active {
-  border-color: #4caf50;
-  background: rgba(76,175,80,0.2);
-  box-shadow: 0 6px 24px rgba(76,175,80,0.3);
-}
-.alumni-year-btn .yr-icon { font-size: 1.5rem; }
-.alumni-year-btn .yr-label { display: flex; flex-direction: column; text-align: left; }
-.alumni-year-btn .yr-label span:first-child { font-size: 11px; opacity: 0.6; font-weight: 400; }
-.alumni-year-btn .yr-label strong { font-size: 16px; color: #a4ffb0; }
-
-/* Alumni photo display */
-.alumni-photo-wrap {
-  margin-top: 28px;
-  animation: fadeUp 0.4s ease;
-}
-.alumni-photo-wrap h2 {
-  margin-bottom: 16px;
-}
-.alumni-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 12px;
-  margin-top: 16px;
-}
-.alumni-grid-item {
-  position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  border: 2px solid rgba(144,238,144,0.18);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
-  aspect-ratio: 3/4;
-  background: rgba(0,60,0,0.35);
-  cursor: pointer;
-  transition: 0.3s;
-}
-.alumni-grid-item:hover {
-  transform: scale(1.04);
-  border-color: rgba(144,238,144,0.55);
-  box-shadow: 0 10px 28px rgba(0,0,0,0.6), 0 0 14px rgba(144,238,144,0.2);
-}
-.alumni-grid-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.alumni-grid-item .alumni-name-tag {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: linear-gradient(to top, rgba(0,30,0,0.92), transparent);
-  padding: 20px 8px 8px;
-  font-size: 11px;
-  font-weight: 600;
-  text-align: center;
-  color: #a4ffb0;
-  letter-spacing: 0.3px;
-}
-
-/* Alumni photo caption bar */
-.alumni-caption-bar {
-  margin-top: 18px;
-  padding: 14px 20px;
-  background: rgba(0,50,0,0.5);
-  border-radius: 12px;
-  border: 1px solid rgba(144,238,144,0.12);
-  font-size: 12.5px;
-  opacity: 0.7;
-  text-align: center;
-}
-
-/* ===== ALUMNI PROFILE MODAL ===== */
-#alumniModalOverlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-  backdrop-filter: blur(8px);
-  z-index: 5000;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  animation: fadeIn 0.25s ease;
-}
-#alumniModalOverlay.open {
-  display: flex;
-}
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-
-#alumniModalBox {
-  background: linear-gradient(145deg, rgba(0,40,0,0.97), rgba(0,25,0,0.98));
-  border: 1px solid rgba(144,238,144,0.3);
-  border-radius: 24px;
-  max-width: 480px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 40px rgba(76,175,80,0.15);
-  animation: modalSlideUp 0.35s cubic-bezier(0.34,1.56,0.64,1);
-  position: relative;
-}
-@keyframes modalSlideUp {
-  from { opacity:0; transform: scale(0.85) translateY(30px); }
-  to   { opacity:1; transform: scale(1) translateY(0); }
-}
-
-.alumni-modal-photo {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  object-position: top;
-  border-radius: 24px 24px 0 0;
-  display: block;
-}
-.alumni-modal-body {
-  padding: 24px 28px 28px;
-}
-.alumni-modal-close {
-  position: absolute;
-  top: 14px; right: 16px;
-  background: rgba(0,0,0,0.55);
-  border: none;
-  color: white;
-  font-size: 22px;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  line-height: 1;
-  transition: 0.2s;
-  z-index: 10;
-}
-.alumni-modal-close:hover { background: rgba(76,175,80,0.5); }
-
-.alumni-modal-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: #a4ffb0;
-  margin-bottom: 4px;
-}
-.alumni-modal-badge {
-  display: inline-block;
-  background: rgba(76,175,80,0.25);
-  border: 1px solid rgba(144,238,144,0.35);
-  color: #a4ffb0;
-  padding: 3px 14px;
-  border-radius: 999px;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 18px;
-}
-.alumni-modal-info {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 18px;
-}
-.alumni-modal-info-row {
-  display: flex;
-  gap: 10px;
-  font-size: 13.5px;
-  line-height: 1.5;
-}
-.alumni-modal-info-row .lbl {
-  min-width: 120px;
-  color: rgba(255,255,255,0.5);
-  font-weight: 400;
-}
-.alumni-modal-info-row .val {
-  color: #fff;
-  font-weight: 500;
-  flex: 1;
-}
-.alumni-modal-kesan {
-  background: rgba(255,255,255,0.05);
-  border-left: 3px solid #4caf50;
-  border-radius: 0 12px 12px 0;
-  padding: 14px 16px;
-  font-size: 13px;
-  line-height: 1.8;
-  color: rgba(255,255,255,0.85);
-  font-style: italic;
-  margin-top: 4px;
-}
-.alumni-modal-kesan-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: #a4ffb0;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
-  font-style: normal;
-  text-transform: uppercase;
-}
-
-/* ===== DIVIDER ===== */
-.divider{
-  border:none;
-  border-top:1px solid rgba(144,238,144,0.2);
-  margin:40px 0;
-}
-
-/* Season mini cards inside container */
-.seasons-row{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:14px; margin-top:8px;
-}
-.season-mini{
-  border-radius:16px; padding:20px 16px;
-  cursor:pointer; transition:0.3s;
-  text-align:left;
-}
-.season-mini:hover{ transform:translateY(-4px); box-shadow:0 14px 36px rgba(0,0,0,0.4); }
-.season-mini.hujan{ background:linear-gradient(135deg,#1565c0,#42a5f5); }
-.season-mini.kemarau{ background:linear-gradient(135deg,#e65100,#ffb74d); }
-.season-mini.pancaroba{ background:linear-gradient(135deg,#2e7d32,#aed581); }
-.season-mini.tinggi{ background:linear-gradient(135deg,#4a148c,#ce93d8); }
-.season-mini .s-icon{ font-size:2rem; margin-bottom:8px; }
-.season-mini h4{ font-size:15px; font-weight:700; margin-bottom:4px; }
-.season-mini p{ font-size:12px; opacity:0.88; line-height:1.5; font-weight:300; }
-.month-tags{ display:flex; gap:5px; flex-wrap:wrap; margin-top:10px; }
-.month-tag{
-  background:rgba(255,255,255,0.22); border-radius:999px;
-  padding:3px 10px; font-size:11px; font-weight:600;
-}
-
-/* Calendar table */
-.cal-wrap{
-  background:rgba(255,255,255,0.06); border-radius:16px;
-  padding:24px; margin-top:28px; overflow-x:auto;
-}
-.cal-wrap h3{ font-size:1rem; margin-bottom:16px; color:#a4ffb0; }
-table{ width:100%; border-collapse:collapse; min-width:580px; font-size:12.5px; }
-th,td{ padding:9px 8px; text-align:center; border-bottom:1px solid rgba(255,255,255,0.07); }
-th{ color:rgba(255,255,255,0.55); font-weight:600; }
-td:first-child{ text-align:left; font-weight:500; padding-left:12px; }
-tr:hover td{ background:rgba(255,255,255,0.04); }
-
-/* Plants grid */
-.filter-bar-g{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px; }
-.filter-btn-g{
-  padding:7px 17px; border-radius:999px;
-  border:1.5px solid rgba(144,238,144,0.35);
-  background:rgba(255,255,255,0.06);
-  color:rgba(255,255,255,0.75); font-size:12.5px; font-weight:500;
-  cursor:pointer; transition:0.2s;
-  font-family:'Poppins',sans-serif;
-}
-.filter-btn-g:hover,.filter-btn-g.active{
-  border-color:#90ee90; background:rgba(144,238,144,0.15); color:#fff;
-}
-
-.search-g{
-  display:flex; align-items:center; gap:8px;
-  background:rgba(255,255,255,0.08);
-  border:1.5px solid rgba(144,238,144,0.25);
-  border-radius:999px; padding:9px 18px;
-  max-width:380px; margin-bottom:20px;
-  transition:border-color 0.2s;
-}
-.search-g:focus-within{ border-color:#90ee90; }
-.search-g input{
-  border:none; outline:none; background:transparent;
-  font-family:'Poppins',sans-serif; font-size:13px; color:#fff; flex:1;
-}
-.search-g input::placeholder{ color:rgba(255,255,255,0.4); }
-
-.plants-g{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:14px;
-}
-.plant-card-g{
-  background:rgba(255,255,255,0.07);
-  border-radius:14px; overflow:hidden;
-  border:1px solid rgba(144,238,144,0.12);
-  cursor:pointer; transition:0.25s;
-}
-.plant-card-g:hover{ background:rgba(255,255,255,0.12); transform:translateY(-4px); box-shadow:0 12px 30px rgba(0,0,0,0.4); }
-.plant-thumb-g{
-  height:110px; display:flex; align-items:center; justify-content:center;
-  font-size:3.2rem; position:relative;
-}
-.p-badge{
-  position:absolute; top:8px; right:8px;
-  padding:3px 9px; border-radius:999px; font-size:10px; font-weight:700;
-}
-.pb-hujan{ background:rgba(21,101,192,0.8); color:#bbdefb; }
-.pb-kemarau{ background:rgba(230,81,0,0.8); color:#ffe0b2; }
-.pb-all{ background:rgba(46,125,50,0.8); color:#dcedc8; }
-.pb-tinggi{ background:rgba(74,20,140,0.8); color:#e1bee7; }
-.plant-info-g{ padding:14px; }
-.plant-info-g h4{ font-size:14px; font-weight:600; margin-bottom:3px; }
-.plant-info-g p{ font-size:12px; opacity:0.65; }
-.ptags{ display:flex; gap:5px; flex-wrap:wrap; margin-top:8px; }
-.ptag{ background:rgba(255,255,255,0.1); padding:2px 9px; border-radius:999px; font-size:10.5px; color:rgba(255,255,255,0.7); }
-
-/* Guide cards */
-.guide-g{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
-  gap:16px;
-}
-.guide-card-g{
-  background:rgba(255,255,255,0.07);
-  border-radius:16px; padding:24px;
-  border:1px solid rgba(144,238,144,0.12);
-  transition:0.25s;
-}
-.guide-card-g:hover{ background:rgba(255,255,255,0.11); transform:translateY(-3px); }
-.guide-card-g .g-icon{ font-size:2.2rem; margin-bottom:12px; }
-.guide-card-g h3{ font-size:15px; font-weight:700; margin-bottom:6px; color:#a4ffb0; }
-.guide-card-g .g-desc{ font-size:13px; opacity:0.7; margin-bottom:14px; }
-.step-list{ list-style:none; }
-.step-list li{
-  display:flex; gap:8px; align-items:flex-start;
-  padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.07);
-  font-size:12.5px; color:rgba(255,255,255,0.75); line-height:1.5;
-}
-.snum{
-  min-width:22px; height:22px;
-  background:rgba(144,238,144,0.2); color:#90ee90;
-  border-radius:50%; display:flex; align-items:center; justify-content:center;
-  font-size:11px; font-weight:700; flex-shrink:0;
-}
-
-/* Fertilizer */
-.fert-row{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:12px; margin-bottom:8px;
-}
-.fert-card-g{
-  background:rgba(255,255,255,0.07);
-  border-radius:13px; padding:16px; text-align:center;
-  border:1px solid rgba(144,238,144,0.1);
-}
-.fert-card-g .fi{ font-size:2rem; margin-bottom:8px; }
-.fert-card-g h4{ font-size:13px; font-weight:700; margin-bottom:4px; }
-.fert-card-g p{ font-size:11.5px; opacity:0.65; line-height:1.5; }
-.ftype{ font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; }
-.ft-organik{ color:#69f0ae; }
-.ft-kimia{ color:#64b5f6; }
-.ft-hayati{ color:#ce93d8; }
-
-.fert-section-g h3{ font-size:1rem; font-weight:700; color:#a4ffb0; margin:28px 0 14px; display:flex; align-items:center; gap:8px; }
-
-/* Technique boxes */
-.tech-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:12px; margin-top:20px;
-}
-.tech-box{
-  padding:16px; border-radius:13px;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(144,238,144,0.12);
-}
-.tech-box .tb-icon{ font-size:1.6rem; margin-bottom:8px; }
-.tech-box strong{ display:block; font-size:13.5px; margin-bottom:5px; }
-.tech-box p{ font-size:12px; opacity:0.65; }
-
-/* Tips */
-.tips-g{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:14px;
-}
-.tip-g{
-  padding:20px; border-radius:14px;
-  border-left:4px solid;
-  background:rgba(255,255,255,0.05);
-}
-.tip-g.green{ border-color:#69f0ae; }
-.tip-g.yellow{ border-color:#ffeb3b; }
-.tip-g.blue{ border-color:#64b5f6; }
-.tip-g.orange{ border-color:#ffb74d; }
-.tip-g h4{ font-weight:700; font-size:14px; margin-bottom:7px; }
-.tip-g p{ font-size:13px; opacity:0.72; line-height:1.65; }
-
-.jadwal-g{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:12px; margin-top:20px;
-}
-.jcard{
-  background:rgba(255,255,255,0.07); border-radius:12px; padding:14px;
-}
-.jcard .ji{ font-size:1.5rem; margin-bottom:6px; }
-.jcard strong{ display:block; color:#a4ffb0; font-size:13px; margin-bottom:3px; }
-.jcard p{ font-size:12px; opacity:0.65; }
-
-/* SUB-NAV for tani sections */
-.tani-subnav{
-  display:flex; gap:8px; flex-wrap:wrap;
-  margin-bottom:28px;
-}
-.tani-tab{
-  padding:8px 18px; border-radius:999px;
-  border:1.5px solid rgba(144,238,144,0.3);
-  background:rgba(255,255,255,0.06);
-  color:rgba(255,255,255,0.75); font-size:13px; font-weight:500;
-  cursor:pointer; transition:0.2s;
-  font-family:'Poppins',sans-serif;
-}
-.tani-tab:hover,.tani-tab.active{
-  border-color:#90ee90; background:rgba(144,238,144,0.18); color:#fff; font-weight:600;
-}
-.tani-panel{ display:none; }
-.tani-panel.active{ display:block; animation:fadeUp 0.35s ease; }
-
-/* ===== MODAL ===== */
-.modal-overlay{
-  display:none; position:fixed; inset:0;
-  background:rgba(0,0,0,0.7); z-index:2000;
-  justify-content:center; align-items:center; padding:20px;
-}
-.modal-overlay.open{ display:flex; }
-.modal-box{
-  background:linear-gradient(160deg,#0d2b0d,#1a4a1a);
-  border-radius:22px; max-width:580px; width:100%;
-  max-height:85vh; overflow-y:auto;
-  padding:36px; position:relative;
-  border:1px solid rgba(144,238,144,0.25);
-  box-shadow:0 24px 60px rgba(0,0,0,0.7);
-  animation:modalIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
-}
-@keyframes modalIn{ from{opacity:0;transform:scale(0.85)} to{opacity:1;transform:scale(1)} }
-.modal-close{
-  position:absolute; top:14px; right:14px;
-  background:rgba(255,255,255,0.1); border:none; border-radius:50%;
-  width:34px; height:34px; font-size:18px; color:#fff;
-  cursor:pointer; display:flex; align-items:center; justify-content:center; transition:0.2s;
-}
-.modal-close:hover{ background:rgba(255,255,255,0.2); }
-.modal-box .mi{ font-size:3.5rem; margin-bottom:14px; }
-.modal-box h2{ font-family:'Playfair Display',serif; font-size:1.7rem; margin-bottom:4px; }
-.modal-box .msub{ font-size:13px; opacity:0.6; margin-bottom:22px; }
-.msec h4{
-  font-size:11px; text-transform:uppercase; letter-spacing:1.5px;
-  color:#69f0ae; margin-bottom:8px; margin-top:20px; font-weight:700;
-}
-.msec p{ font-size:13.5px; opacity:0.8; line-height:1.7; }
-.mlist{ list-style:none; }
-.mlist li{
-  padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.07);
-  font-size:13.5px; opacity:0.8; display:flex; gap:8px;
-}
-.mlist li::before{ content:'→'; color:#69f0ae; flex-shrink:0; }
-
-/* FOOTER */
-footer{
-  text-align:center; padding:24px;
-  background:rgba(0,40,0,0.95);
-  font-size:13px; opacity:0.75;
-  border-top:1px solid rgba(144,238,144,0.15);
-}
-
-@media(max-width:768px){
-  h1{ font-size:1.5rem; }
-  .logo-circle{ width:85px; height:85px; }
-  nav button{ padding:14px 10px; font-size:12px; }
-  .container{ padding:28px 18px; }
-  .intro-logo-img { width: 70px; height: 70px; }
-  .intro-logo-img.atph { width: 80px; height: 80px; }
-  .intro-logos-row { gap: 12px; }
-  .alumni-year-btn { padding: 12px 18px; }
-}
+  :root {
+    --bg: #0d0d0d;
+    --accent: #c9f31d;
+    --accent-dim: rgba(201,243,29,0.12);
+    --border: rgba(61,61,61,0.8);
+    --white: #fff;
+    --muted: #d8d8d8;
+    --dark2: #020202;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ── Custom Cursor ── */
+  #cursor {
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    mix-blend-mode: difference;
+  }
+  #cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.25s cubic-bezier(.17,.67,.83,.67), opacity .3s;
+    opacity: 0.6;
+  }
+
+  /* ── Background glows ── */
+  .glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Grain overlay ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E&quot;);
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ── Navbar ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    background: rgba(13,13,13,0.7);
+  }
+  .nav-logo {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color .3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width .3s ease;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    background: var(--accent);
+    color: #000;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    padding: 10px 24px;
+    border-radius: 100px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .nav-cta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(201,243,29,0.4);
+  }
+
+  /* ── Hero ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 120px 40px 80px;
+    overflow: hidden;
+  }
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: slideUp .7s .1s ease forwards;
+  }
+  .hero-badge span {
+    display: inline-block;
+    width: 60px; height: 1px;
+    background: rgba(255,255,255,.3);
+  }
+  .hero-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: clamp(56px,7vw,110px);
+    line-height: 1.0;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: slideUp .7s .2s ease forwards;
+  }
+  .hero-title .accent { color: var(--accent); }
+  .hero-sub {
+    margin-top: 28px;
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: slideUp .7s .4s ease forwards;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 48px;
+    opacity: 0;
+    animation: slideUp .7s .6s ease forwards;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--border);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 0;
+    background: var(--accent);
+    border-radius: 50%;
+    transition: height .4s cubic-bezier(.77,0,.175,1);
+  }
+  .btn-primary:hover::before { height: 100%; }
+  .btn-primary:hover { color: #000; box-shadow: 0 0 40px rgba(201,243,29,.3); }
+  .btn-primary span { position: relative; z-index: 1; text-align: center; }
+
+  /* ── Photo ── */
+  .hero-photo-wrap {
+    position: relative;
+    opacity: 0;
+    animation: fadeIn .9s .5s ease forwards;
+  }
+  .hero-photo {
+    width: 300px;
+    height: 380px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+  /* Replace src with actual photo. ID: fotohayyan */
+  #fotohayyan {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+  }
+  .photo-placeholder {
+    text-align: center;
+    color: #555;
+    font-size: 13px;
+    font-family: 'Outfit', sans-serif;
+  }
+  .photo-placeholder svg { margin-bottom: 8px; opacity: 0.4; }
+  .hero-photo-ring {
+    position: absolute;
+    inset: -20px;
+    border-radius: 40px;
+    border: 1px dashed rgba(201,243,29,.2);
+    animation: spinSlow 20s linear infinite;
+  }
+  .hero-photo-dot {
+    position: absolute;
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 20px var(--accent);
+  }
+
+  /* ── Marquee ticker ── */
+  .ticker-wrap {
+    width: 100%;
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: rgba(201,243,29,0.04);
+    padding: 14px 0;
+    margin: 0;
+  }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: ticker 22s linear infinite;
+    gap: 0;
+  }
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    padding: 0 40px;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(22px,4vw,54px);
+    font-weight: 600;
+    white-space: nowrap;
+    color: rgba(255,255,255,0.15);
+  }
+  .ticker-item.active { color: var(--white); }
+  .ticker-star {
+    display: inline-block;
+    color: var(--accent);
+    font-size: 0.7em;
+    line-height: 1;
+  }
+
+  /* ── Section common ── */
+  section { position: relative; z-index: 2; }
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .section-label::after {
+    content: '';
+    display: block;
+    width: 70px; height: 1px;
+    background: rgba(255,255,255,.3);
+  }
+  .section-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: clamp(42px,5vw,80px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── About ── */
+  #about {
+    padding: 120px 0;
+    overflow: hidden;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 0;
+  }
+  .about-image {
+    position: relative;
+  }
+  .about-img-box {
+    aspect-ratio: 3/4;
+    max-width: 360px;
+    background: linear-gradient(135deg,#1c1c1c,#171717);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .about-img-box::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 200px;
+    background: linear-gradient(transparent, var(--bg));
+  }
+  .about-img-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #444;
+    font-size: 13px;
+    font-family: 'Outfit', sans-serif;
+    gap: 8px;
+  }
+  .about-content { }
+  .about-desc {
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+    font-size: 17px;
+  }
+  .stats-row {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .stat-item p { font-size: 14px; color: var(--muted); }
+  .contact-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 36px;
+  }
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    text-decoration: none;
+    padding: 12px 20px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    transition: all .3s;
+  }
+  .contact-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+  .contact-link svg { flex-shrink: 0; }
+
+  /* ── Services ── */
+  #services {
+    padding: 120px 0;
+    background: var(--dark2);
+    overflow: hidden;
+  }
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+  }
+  .services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .service-item {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--white);
+    transition: all .35s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .service-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 0;
+    background: var(--accent-dim);
+    transition: width .4s ease;
+  }
+  .service-item:hover::before { width: 100%; }
+  .service-item:hover { padding-left: 20px; }
+  .service-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 48px;
+    position: relative;
+    z-index: 1;
+  }
+  .service-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(22px,3.5vw,36px);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+  }
+  .service-arrow {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .service-item:hover .service-arrow {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .service-item:hover .service-arrow svg path { stroke: #000; }
+
+  /* ── Contact ── */
+  #contact {
+    padding: 140px 0 120px;
+    overflow: hidden;
+    position: relative;
+  }
+  #contact .glow-orb {
+    background: var(--accent);
+    width: 300px; height: 300px;
+    opacity: 0.06;
+    top: 30%; right: -5%;
+    animation: pulse 4s ease-in-out infinite;
+  }
+  .contact-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  .contact-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: clamp(52px,8vw,130px);
+    line-height: 1.0;
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    animation: none;
+  }
+  .contact-sub-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(32px,5vw,80px);
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 60px;
+    opacity: 0.9;
+  }
+  .contact-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 32px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    text-decoration: none;
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all .3s;
+  }
+  .contact-card:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #000;
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(201,243,29,.25);
+  }
+  .contact-card:hover svg path,
+  .contact-card:hover svg rect { fill: #000; }
+  .contact-card-icon {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background .3s;
+  }
+  .contact-card:hover .contact-card-icon { background: rgba(0,0,0,0.15); }
+
+  /* ── Footer ── */
+  footer {
+    padding: 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: rgba(255,255,255,.4);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--dark2);
+  }
+  .footer-logo {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: clamp(40px,6vw,100px);
+    letter-spacing: -0.04em;
+    color: rgba(255,255,255,.06);
+    text-transform: uppercase;
+    line-height: 1;
+    user-select: none;
+  }
+  .footer-row {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── Keyframes ── */
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(60px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: .06; }
+    50% { transform: scale(1.2); opacity: .09; }
+  }
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(201,243,29,0.3); }
+    50% { box-shadow: 0 0 50px rgba(201,243,29,0.6); }
+  }
+  @keyframes orbFloat {
+    0%, 100% { transform: translate(-50%,-50%) scale(1); }
+    50% { transform: translate(-50%,-50%) scale(1.3); }
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    #hero { padding: 100px 20px 60px; }
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero-photo { width: 220px; height: 280px; }
+    .hero-photo-wrap { display: flex; justify-content: center; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-img-box { max-width: 100%; aspect-ratio: 4/3; }
+    .section-inner { padding: 0 20px; }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+    .contact-cards { flex-direction: column; align-items: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
 </style>
 </head>
 <body>
 
-<!-- ===== INTRO ANIMATION SCREEN ===== -->
-<div id="introScreen">
-  <!-- Animated rings -->
-  <div class="intro-rings">
-    <div class="intro-ring" style="width:300px;height:300px;animation-duration:3s;animation-delay:0.5s;"></div>
-    <div class="intro-ring" style="width:500px;height:500px;animation-duration:4s;animation-delay:1s;"></div>
-    <div class="intro-ring" style="width:700px;height:700px;animation-duration:5s;animation-delay:1.5s;"></div>
-  </div>
+<!-- Custom cursor -->
+<div id=&quot;cursor&quot;></div>
+<div id=&quot;cursor-ring&quot;></div>
 
-  <!-- Main content -->
-  <div class="intro-logo-wrap">
-    <div class="intro-logos-row">
-      <img src="ppnebula.jpg" class="intro-logo-img" onerror="this.style.opacity='0.2'">
-      <div class="intro-divider-dot"></div>
-      <img src="ppjurusan.jpeg" class="intro-logo-img" onerror="this.style.opacity='0.2'">
-    </div>
-    <div class="intro-title">Agronomy <span>Culture</span></div>
-    <div class="intro-sub">Inovasi · Teknologi · Budaya Pertanian</div>
-    <div class="intro-badge">SMK Negeri 1 Bulakamba · ATPH</div>
-  </div>
-
-  <!-- Progress -->
-  <div class="intro-progress-wrap">
-    <div class="intro-progress-bar">
-      <div class="intro-progress-fill"></div>
-    </div>
-    <div class="intro-progress-label">Memuat halaman...</div>
-  </div>
-</div>
-
-<!-- ===== NAVBAR ===== -->
+<!-- ── NAVBAR ── -->
 <nav>
-  <button id="navBtn0" style="border-bottom:3px solid #4caf50;color:#a4ffb0;font-weight:600;" onclick="showSection('beranda',this)">🏠 Beranda</button>
-  <button id="navBtn1" onclick="showSection('kegiatan',this)">📋 Kegiatan</button>
-  <button id="navBtn2" onclick="showSection('angkatan',this)">🎓 Angkatan</button>
-  <button id="navBtn3" onclick="showSection('alumni',this)">👥 Alumni</button>
-  <button id="navBtn4" onclick="showSection('galeri',this)">📷 Galeri</button>
-  <button id="navBtn5" onclick="showSection('panduan',this)">🌾 Panduan Pertanian</button>
+  <a href=&quot;#&quot; class=&quot;nav-logo&quot;>AH.</a>
+  <ul class=&quot;nav-links&quot;>
+    <li><a href=&quot;#about&quot;>About</a></li>
+    <li><a href=&quot;#services&quot;>Services</a></li>
+    <li><a href=&quot;#contact&quot;>Kontak</a></li>
+  </ul>
+  <a href=&quot;https://wa.me/6285712259432&quot; target=&quot;_blank&quot; class=&quot;nav-cta&quot;>HUBUNGI</a>
 </nav>
 
-<!-- ===========================
-     BERANDA
-=========================== -->
-<div id="beranda" class="section active">
-<div class="container">
+<!-- ── HERO ── -->
+<section id=&quot;hero&quot;>
+  <!-- Glow orbs -->
+  <div class=&quot;glow-orb&quot; style=&quot;background:var(--accent);width:180px;height:180px;opacity:.07;top:30%;left:-3%;animation:orbFloat 6s ease-in-out infinite;&quot;></div>
+  <div class=&quot;glow-orb&quot; style=&quot;background:#3af;width:120px;height:120px;opacity:.04;top:60%;right:10%;animation:orbFloat 8s 2s ease-in-out infinite;&quot;></div>
 
-  <div class="hero-header">
-    <div class="logo-group">
-      <img src="1000006353.png" class="logo-circle" title="SMK Negeri 1 Bulakamba" onerror="this.style.display='none'">
-      <img src="ppnebula.jpg" class="logo-circle" onerror="this.style.display='none'">
-      <img src="1000006826.png" class="logo-atph" onerror="this.style.display='none'">
-      <img src="ppjurusan.jpeg" class="logo-circle" onerror="this.style.display='none'">
-    </div>
-    <div class="hero-badge">SMK Negeri 1 Bulakamba</div>
-    <div class="hero-title">Agronomy <span>Culture</span></div>
-    <p class="hero-sub">Inovasi • Teknologi • Budaya Pertanian Modern</p>
-  </div>
-
-  <h2>Apa itu Agronomy Culture?</h2>
-  <p>Agronomy Culture adalah wadah pengembangan ilmu pertanian modern yang mengintegrasikan praktik lapangan, inovasi teknologi, serta budaya kerja profesional di bidang agronomi di lingkungan SMK Negeri 1 Bulakamba.</p>
-
-  <hr class="divider">
-  <h2>Dokumentasi Kegiatan</h2>
-  <div class="gallery">
-    <img src="kegiatanjurusan1.jpg" alt="Kegiatan 1">
-    <img src="kegiatanjurusan2.jpg" alt="Kegiatan 2">
-    <img src="kegiatanjurusan3.jpg" alt="Kegiatan 3">
-    <img src="kegiatanjurusan4.jpg" alt="Kegiatan 4">
-  </div>
-
-  <hr class="divider">
-  <h2>🌦️ Musim Tanam di Indonesia</h2>
-  <p style="margin-bottom:20px">Pahami musim untuk menentukan waktu tanam yang tepat.</p>
-  <div class="seasons-row">
-    <div class="season-mini hujan" onclick="goToPanduan('musim')">
-      <div class="s-icon">🌧️</div>
-      <h4>Musim Hujan</h4>
-      <p>Nov – Apr. Cocok untuk padi, sayuran, umbi-umbian.</p>
-      <div class="month-tags"><span class="month-tag">Nov–Apr</span></div>
-    </div>
-    <div class="season-mini kemarau" onclick="goToPanduan('musim')">
-      <div class="s-icon">☀️</div>
-      <h4>Musim Kemarau</h4>
-      <p>Mei – Okt. Ideal untuk jagung, cabai, semangka.</p>
-      <div class="month-tags"><span class="month-tag">Mei–Okt</span></div>
-    </div>
-    <div class="season-mini pancaroba" onclick="goToPanduan('musim')">
-      <div class="s-icon">🌤️</div>
-      <h4>Pancaroba</h4>
-      <p>Peralihan musim. Waspada hama dan penyakit.</p>
-      <div class="month-tags"><span class="month-tag">Apr–Mei</span><span class="month-tag">Okt–Nov</span></div>
-    </div>
-    <div class="season-mini tinggi" onclick="goToPanduan('musim')">
-      <div class="s-icon">⛰️</div>
-      <h4>Dataran Tinggi</h4>
-      <p>Iklim sejuk 15–25°C. Kopi, teh, kentang.</p>
-      <div class="month-tags"><span class="month-tag">Sepanjang Tahun</span></div>
-    </div>
-  </div>
-
-</div>
-</div>
-
-<!-- ===========================
-     KEGIATAN
-=========================== -->
-<div id="kegiatan" class="section">
-<div class="container">
-  <h1>Kegiatan Agronomy Culture</h1>
-  <p>Ringkasan kegiatan meliputi praktik budidaya tanaman, pengolahan tanah, pembibitan, dan kegiatan agribisnis siswa.</p>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:20px;">
-    <img src="kegiatan1.jpg" alt="Kegiatan 1" style="width:100%;height:120px;object-fit:cover;border-radius:10px;transition:0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    <img src="kegiatan2.jpg" alt="Kegiatan 2" style="width:100%;height:120px;object-fit:cover;border-radius:10px;transition:0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    <img src="kegiatan3.jpg" alt="Kegiatan 3" style="width:100%;height:120px;object-fit:cover;border-radius:10px;transition:0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    <img src="kegiatan4.jpg" alt="Kegiatan 4" style="width:100%;height:120px;object-fit:cover;border-radius:10px;transition:0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    <img src="kegiatan5.jpg" alt="Kegiatan 5" style="width:100%;height:120px;object-fit:cover;border-radius:10px;transition:0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    <img src="kegiatan6.jpg" alt="Kegiatan 6" style="width:100%;height:120px;object-fit:cover;border-radius:10px;transition:0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    <img src="kegiatan7.jpg" alt="Kegiatan 7" style="width:100%;height:120px;object-fit:cover;border-radius:10px;transition:0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    <img src="kegiatan8.jpg" alt="Kegiatan 8" style="width:100%;height:120px;object-fit:cover;border-radius:10px;transition:0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-    <img src="kegiatan9.jpg" alt="Kegiatan 9" style="width:100%;height:120px;object-fit:cover;border-radius:10px;transition:0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-  </div>
-</div>
-</div>
-
-<!-- ===========================
-     ANGKATAN
-=========================== -->
-<div id="angkatan" class="section">
-<div class="container">
-  <h1>Angkatan</h1>
-  <button class="button" onclick="showAngkatan('2025')">2025–2026</button>
-  <button class="button" onclick="showAngkatan('2026')">2026–2027</button>
-  <div id="angkatanDetail" style="margin-top:24px"></div>
-</div>
-</div>
-
-<!-- ===========================
-     ALUMNI
-=========================== -->
-<div id="alumni" class="section">
-<div class="container">
-  <h1>Alumni</h1>
-  <p style="margin-bottom:24px;opacity:0.7;">Pilih tahun kelulusan untuk melihat foto alumni.</p>
-
-  <div style="display:flex;flex-wrap:wrap;gap:4px;">
-    <button class="alumni-year-btn" id="alumniBtn2026" onclick="showAlumni('2026', this)">
-      <span class="yr-icon">🎓</span>
-      <span class="yr-label">
-        <span>Lulusan</span>
-        <strong>2026</strong>
-      </span>
-    </button>
-    <button class="alumni-year-btn" id="alumniBtn2025" onclick="showAlumni('2025', this)">
-      <span class="yr-icon">🎓</span>
-      <span class="yr-label">
-        <span>Lulusan</span>
-        <strong>2025</strong>
-      </span>
-    </button>
-  </div>
-
-  <div id="alumniDetail" style="margin-top:8px"></div>
-</div>
-</div>
-
-<!-- ===========================
-     GALERI
-=========================== -->
-<div id="galeri" class="section">
-<div class="container">
-  <h1>📸 Galeri Kegiatan</h1>
-  <div class="gallery">
-    <img src="galerikegiatan1.jpeg" alt="Galeri Kegiatan 1">
-    <img src="galerikegiatan2.jpeg" alt="Galeri Kegiatan 2">
-    <img src="galerikegiatan3.jpeg" alt="Galeri Kegiatan 3">
-    <img src="galerikegiatan4.jpeg" alt="Galeri Kegiatan 4">
-    <img src="galerikegiatan5.jpeg" alt="Galeri Kegiatan 5">
-    <img src="galerikegiatan6.jpg" alt="Galeri Kegiatan 6">
-    <img src="galerikegiatan7.jpg" alt="Galeri Kegiatan 7">
-  </div>
-
-  <hr class="divider">
-  <h2>Galeri Seluruh Kegiatan</h2>
-  <div class="gallery">
-    <img src="galeri1.jpg" alt="Galeri 1">
-    <img src="galeri2.jpg" alt="Galeri 2">
-    <img src="galeri3.jpg" alt="Galeri 3">
-    <img src="galeri4.jpg" alt="Galeri 4">
-  </div>
-</div>
-</div>
-
-<!-- ===========================
-     PANDUAN PERTANIAN
-=========================== -->
-<div id="panduan" class="section">
-<div class="container">
-
-  <h1>🌾 Panduan Pertanian</h1>
-  <p style="margin-bottom:28px">Materi lengkap bertani — musim tanam, jenis tanaman, budidaya, pemupukan, hingga tips petani modern.</p>
-
-  <div class="tani-subnav">
-    <button id="taniTab0" class="tani-tab" onclick="showTani('musim',this)">🌦️ Musim</button>
-    <button id="taniTab1" class="tani-tab" onclick="showTani('tanaman',this)">🌿 Tanaman</button>
-    <button id="taniTab2" class="tani-tab" onclick="showTani('budidaya',this)">👨‍🌾 Budidaya</button>
-    <button id="taniTab3" class="tani-tab" onclick="showTani('pupuk',this)">🧪 Pemupukan</button>
-    <button id="taniTab4" class="tani-tab" onclick="showTani('tips',this)">💡 Tips & Materi</button>
-  </div>
-
-  <!-- MUSIM -->
-  <div class="tani-panel active" id="tani-musim">
-    <div class="seasons-row">
-      <div class="season-mini hujan" onclick="openMusimModal('hujan')">
-        <div class="s-icon">🌧️</div><h4>Musim Hujan</h4>
-        <p>Curah hujan tinggi, padi dan sayuran daun tumbuh optimal.</p>
-        <div class="month-tags"><span class="month-tag">Nov</span><span class="month-tag">Des</span><span class="month-tag">Jan</span><span class="month-tag">Feb</span><span class="month-tag">Mar</span><span class="month-tag">Apr</span></div>
+  <div class=&quot;hero-inner&quot;>
+    <div class=&quot;hero-text&quot;>
+      <div class=&quot;hero-badge&quot;>
+        <span></span>
+        Halo! Aqil Hayyan M.P Here
       </div>
-      <div class="season-mini kemarau" onclick="openMusimModal('kemarau')">
-        <div class="s-icon">☀️</div><h4>Musim Kemarau</h4>
-        <p>Ideal jagung, cabai, kacang, dan tanaman tahan kering.</p>
-        <div class="month-tags"><span class="month-tag">Mei</span><span class="month-tag">Jun</span><span class="month-tag">Jul</span><span class="month-tag">Agu</span><span class="month-tag">Sep</span><span class="month-tag">Okt</span></div>
-      </div>
-      <div class="season-mini pancaroba" onclick="openMusimModal('pancaroba')">
-        <div class="s-icon">🌤️</div><h4>Pancaroba</h4>
-        <p>Peralihan musim, cuaca tidak menentu. Waspada hama.</p>
-        <div class="month-tags"><span class="month-tag">Apr–Mei</span><span class="month-tag">Okt–Nov</span></div>
-      </div>
-      <div class="season-mini tinggi" onclick="openMusimModal('tinggi')">
-        <div class="s-icon">⛰️</div><h4>Dataran Tinggi</h4>
-        <p>Sejuk sepanjang tahun. Kopi, teh, kentang, brokoli.</p>
-        <div class="month-tags"><span class="month-tag">Sepanjang Tahun</span></div>
+      <h1 class=&quot;hero-title&quot;>
+        DIGITAL<br><span class=&quot;accent&quot;>EXPERT</span><br>PARTNER
+      </h1>
+      <p class=&quot;hero-sub&quot;>
+        Menyediakan layanan digital terpercaya — dari domain &amp; hosting, pembuatan website, aplikasi mod premium, hingga top up game. Semua kebutuhan digital kamu, satu tempat.
+      </p>
+      <div class=&quot;hero-actions&quot;>
+        <a href=&quot;https://wa.me/6285712259432&quot; target=&quot;_blank&quot; class=&quot;btn-primary&quot;>
+          <span>LET'S<br>TALK</span>
+        </a>
+        <div style=&quot;margin-left:20px;&quot;>
+          <div style=&quot;font-family:'Outfit',sans-serif;font-size:13px;color:var(--muted);margin-bottom:4px;&quot;>WhatsApp</div>
+          <div style=&quot;font-family:'Outfit',sans-serif;font-weight:700;font-size:17px;&quot;>+62 857-1225-9432</div>
+        </div>
       </div>
     </div>
-    <div class="cal-wrap">
-      <h3>📅 Kalender Tanam Setahun</h3>
-      <table>
-        <tr>
-          <th>Tanaman</th><th>Jan</th><th>Feb</th><th>Mar</th><th>Apr</th>
-          <th>Mei</th><th>Jun</th><th>Jul</th><th>Agu</th><th>Sep</th><th>Okt</th><th>Nov</th><th>Des</th>
-        </tr>
-        <tr><td>🌾 Padi</td><td>🌱</td><td>🌱</td><td>🌾</td><td>🌾</td><td>—</td><td>—</td><td>🌱</td><td>🌱</td><td>🌾</td><td>🌾</td><td>—</td><td>—</td></tr>
-        <tr><td>🌽 Jagung</td><td>—</td><td>—</td><td>🌱</td><td>🌱</td><td>🌽</td><td>🌽</td><td>—</td><td>—</td><td>🌱</td><td>🌱</td><td>🌽</td><td>—</td></tr>
-        <tr><td>🥬 Sayuran</td><td>🥬</td><td>🥬</td><td>🥬</td><td>—</td><td>—</td><td>🥬</td><td>🥬</td><td>🥬</td><td>🥬</td><td>—</td><td>🥬</td><td>🥬</td></tr>
-        <tr><td>🥜 Kacang</td><td>—</td><td>—</td><td>—</td><td>—</td><td>🌱</td><td>🥜</td><td>🥜</td><td>—</td><td>—</td><td>🌱</td><td>🥜</td><td>—</td></tr>
-        <tr><td>🫚 Kedelai</td><td>—</td><td>—</td><td>🌱</td><td>🌱</td><td>🫚</td><td>🫚</td><td>—</td><td>🌱</td><td>🌱</td><td>🫚</td><td>—</td><td>—</td></tr>
-      </table>
-    </div>
-  </div>
-
-  <!-- TANAMAN -->
-  <div class="tani-panel" id="tani-tanaman">
-    <div class="search-g">
-      <span>🔍</span>
-      <input type="text" placeholder="Cari tanaman..." oninput="filterPlants(this.value)">
-    </div>
-    <div class="filter-bar-g">
-      <button class="filter-btn-g active" onclick="filterByTag('all',this)">Semua</button>
-      <button class="filter-btn-g" onclick="filterByTag('hujan',this)">🌧️ Musim Hujan</button>
-      <button class="filter-btn-g" onclick="filterByTag('kemarau',this)">☀️ Musim Kemarau</button>
-      <button class="filter-btn-g" onclick="filterByTag('all-season',this)">🌀 Sepanjang Tahun</button>
-      <button class="filter-btn-g" onclick="filterByTag('tinggi',this)">⛰️ Dataran Tinggi</button>
-    </div>
-    <div class="plants-g" id="plantsGrid"></div>
-  </div>
-
-  <!-- BUDIDAYA -->
-  <div class="tani-panel" id="tani-budidaya">
-    <div class="guide-g" id="guideGrid"></div>
-  </div>
-
-  <!-- PUPUK -->
-  <div class="tani-panel" id="tani-pupuk">
-    <div class="fert-section-g"><h3>🌿 Pupuk Organik</h3><div class="fert-row" id="pupukOrganik"></div></div>
-    <div class="fert-section-g"><h3>⚗️ Pupuk Kimia (Anorganik)</h3><div class="fert-row" id="pupukKimia"></div></div>
-    <div class="fert-section-g"><h3>🦠 Pupuk Hayati</h3><div class="fert-row" id="pupukHayati"></div></div>
-    <div style="background:rgba(255,255,255,0.06);border-radius:16px;padding:24px;margin-top:20px;border:1px solid rgba(144,238,144,0.1)">
-      <h3 style="font-size:1rem;font-weight:700;color:#a4ffb0;margin-bottom:18px">🔬 Teknik Pemupukan yang Benar</h3>
-      <div class="tech-grid">
-        <div class="tech-box"><div class="tb-icon">📏</div><strong>Tepat Dosis</strong><p>Ikuti anjuran dosis — terlalu banyak membakar akar, terlalu sedikit tak efektif.</p></div>
-        <div class="tech-box"><div class="tb-icon">⏰</div><strong>Tepat Waktu</strong><p>Pupuk dasar saat olah tanah. Susulan saat vegetatif & generatif. Hindari terik siang.</p></div>
-        <div class="tech-box"><div class="tb-icon">📍</div><strong>Tepat Sasaran</strong><p>Berikan di zona perakaran aktif, 5–10 cm dari batang tanaman.</p></div>
-        <div class="tech-box"><div class="tb-icon">💧</div><strong>Setelah Siram</strong><p>Pupuk saat tanah lembab agar mudah larut dan diserap optimal oleh akar.</p></div>
+    <!-- FOTO — ganti src dengan URL foto sebenarnya, id: fotohayyan -->
+    <div class=&quot;hero-photo-wrap&quot;>
+      <div class=&quot;hero-photo-ring&quot;></div>
+      <div class=&quot;hero-photo-dot&quot;></div>
+      <div class=&quot;hero-photo&quot;>
+        <!-- Uncomment &amp; isi src jika foto sudah tersedia:
+        <img id=&quot;fotohayyan&quot; src=&quot;URL_FOTO_KAMU_DISINI&quot; alt=&quot;Aqil Hayyan M.P&quot;>
+        -->
+        <div class=&quot;photo-placeholder&quot;>
+          <svg width=&quot;48&quot; height=&quot;48&quot; fill=&quot;none&quot; viewBox=&quot;0 0 24 24&quot;><circle cx=&quot;12&quot; cy=&quot;8&quot; r=&quot;4&quot; stroke=&quot;#555&quot; stroke-width=&quot;1.5&quot;/><path d=&quot;M4 20c0-4 3.6-7 8-7s8 3 8 7&quot; stroke=&quot;#555&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot;/></svg>
+          <div style=&quot;font-size:12px;color:#444;&quot;>Foto: fotohayyan</div>
+          <div style=&quot;font-size:11px;color:#333;margin-top:4px;&quot;>Aqil Hayyan M.P</div>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- TIPS -->
-  <div class="tani-panel" id="tani-tips">
-    <div class="tips-g" id="tipsGrid"></div>
-    <div style="background:rgba(0,80,0,0.4);border-radius:18px;padding:28px;margin-top:32px;border:1px solid rgba(144,238,144,0.2)">
-      <h3 style="font-size:1rem;color:#a4ffb0;margin-bottom:4px">📌 Jadwal Kegiatan Bertani Bulanan</h3>
-      <div class="jadwal-g" id="jadwalGrid"></div>
+<!-- ── MARQUEE ── -->
+<div class=&quot;ticker-wrap&quot;>
+  <div class=&quot;ticker-track&quot;>
+    <div class=&quot;ticker-item active&quot;>Jual Domain <span class=&quot;ticker-star&quot;>✦</span></div>
+    <div class=&quot;ticker-item&quot;>Jual Hosting <span class=&quot;ticker-star&quot;>✦</span></div>
+    <div class=&quot;ticker-item&quot;>Pembuatan Web <span class=&quot;ticker-star&quot;>✦</span></div>
+    <div class=&quot;ticker-item active&quot;>Aplikasi Mod <span class=&quot;ticker-star&quot;>✦</span></div>
+    <div class=&quot;ticker-item&quot;>Top Up Game <span class=&quot;ticker-star&quot;>✦</span></div>
+    <div class=&quot;ticker-item&quot;>Jual Domain <span class=&quot;ticker-star&quot;>✦</span></div>
+    <div class=&quot;ticker-item&quot;>Jual Hosting <span class=&quot;ticker-star&quot;>✦</span></div>
+    <div class=&quot;ticker-item&quot;>Pembuatan Web <span class=&quot;ticker-star&quot;>✦</span></div>
+    <div class=&quot;ticker-item active&quot;>Aplikasi Mod <span class=&quot;ticker-star&quot;>✦</span></div>
+    <div class=&quot;ticker-item&quot;>Top Up Game <span class=&quot;ticker-star&quot;>✦</span></div>
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section id=&quot;about&quot; style=&quot;padding:120px 0;&quot;>
+  <div class=&quot;section-inner&quot;>
+    <div class=&quot;about-grid&quot;>
+      <!-- Image -->
+      <div class=&quot;about-image reveal&quot;>
+        <div class=&quot;about-img-box&quot;>
+          <!-- Foto About: ganti src jika sudah tersedia -->
+          <div class=&quot;about-img-placeholder&quot;>
+            <svg width=&quot;56&quot; height=&quot;56&quot; fill=&quot;none&quot; viewBox=&quot;0 0 24 24&quot;><circle cx=&quot;12&quot; cy=&quot;8&quot; r=&quot;4&quot; stroke=&quot;#444&quot; stroke-width=&quot;1.5&quot;/><path d=&quot;M4 20c0-4 3.6-7 8-7s8 3 8 7&quot; stroke=&quot;#444&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot;/></svg>
+            <div>Aqil Hayyan M.P</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class=&quot;about-content reveal&quot;>
+        <div class=&quot;section-label&quot;>About Me</div>
+        <h2 class=&quot;section-title&quot;>Passion for<br>Digital <span style=&quot;color:var(--accent)&quot;>Excellence</span></h2>
+        <p class=&quot;about-desc&quot; style=&quot;margin-top:28px;&quot;>
+          Saya adalah penyedia layanan digital yang fokus memberikan solusi terbaik untuk kebutuhan online kamu. Dari domain, hosting, website custom, hingga aplikasi mod premium dan top up game — semua dikerjakan dengan serius dan terpercaya.
+        </p>
+        <p class=&quot;about-desc&quot;>
+          Kepuasan pelanggan adalah prioritas utama saya. Setiap layanan dikerjakan dengan profesional, cepat, dan harga yang bersahabat.
+        </p>
+
+        <div class=&quot;stats-row&quot;>
+          <div class=&quot;stat-item&quot;>
+            <h3>100+</h3>
+            <p>Pelanggan Puas</p>
+          </div>
+          <div class=&quot;stat-item&quot;>
+            <h3>5</h3>
+            <p>Layanan Digital</p>
+          </div>
+          <div class=&quot;stat-item&quot;>
+            <h3>Fast</h3>
+            <p>Response Time</p>
+          </div>
+        </div>
+
+        <div class=&quot;contact-cta-row&quot; style=&quot;margin-top:36px;&quot;>
+          <a href=&quot;https://wa.me/6285712259432&quot; target=&quot;_blank&quot; class=&quot;contact-link&quot;>
+            <svg width=&quot;18&quot; height=&quot;18&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;><path d=&quot;M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.27-1.64A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52zM12 22c-1.87 0-3.7-.5-5.3-1.44l-.38-.23-3.94 1.03 1.05-3.83-.25-.4A9.93 9.93 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.94 9.94 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51H7.5c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.09 4.5.71.31 1.27.49 1.7.63.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.34z&quot; fill=&quot;currentColor&quot;/></svg>
+            WhatsApp
+          </a>
+          <a href=&quot;mailto:qilhayyanz@gmail.com&quot; class=&quot;contact-link&quot;>
+            <svg width=&quot;18&quot; height=&quot;18&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;><path d=&quot;M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot;/><path d=&quot;M22 6l-10 7L2 6&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot;/></svg>
+            Gmail
+          </a>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-</div>
-</div>
+<!-- ── SERVICES ── -->
+<section id=&quot;services&quot;>
+  <div class=&quot;section-inner&quot;>
+    <div class=&quot;services-header reveal&quot;>
+      <div>
+        <div class=&quot;section-label&quot;>Services</div>
+        <h2 class=&quot;section-title&quot;>Layanan<br><span style=&quot;color:var(--accent)&quot;>Unggulan</span></h2>
+      </div>
+    </div>
 
-<!-- ===== MODAL ===== -->
-<div class="modal-overlay" id="modalOverlay" onclick="closeBg(event)">
-  <div class="modal-box" id="modalBox"></div>
-</div>
+    <div class=&quot;services-list reveal&quot;>
+      <div class=&quot;service-item&quot;>
+        <div class=&quot;service-num&quot;>01.</div>
+        <div class=&quot;service-name&quot;>Jual Domain</div>
+        <div class=&quot;service-arrow&quot;>
+          <svg width=&quot;18&quot; height=&quot;18&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;><path d=&quot;M7 17L17 7M17 7H7M17 7v10&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/></svg>
+        </div>
+      </div>
+      <div class=&quot;service-item&quot;>
+        <div class=&quot;service-num&quot;>02.</div>
+        <div class=&quot;service-name&quot;>Jual Hosting</div>
+        <div class=&quot;service-arrow&quot;>
+          <svg width=&quot;18&quot; height=&quot;18&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;><path d=&quot;M7 17L17 7M17 7H7M17 7v10&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/></svg>
+        </div>
+      </div>
+      <div class=&quot;service-item&quot;>
+        <div class=&quot;service-num&quot;>03.</div>
+        <div class=&quot;service-name&quot;>Jasa Pembuatan Web</div>
+        <div class=&quot;service-arrow&quot;>
+          <svg width=&quot;18&quot; height=&quot;18&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;><path d=&quot;M7 17L17 7M17 7H7M17 7v10&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/></svg>
+        </div>
+      </div>
+      <div class=&quot;service-item&quot;>
+        <div class=&quot;service-num&quot;>04.</div>
+        <div class=&quot;service-name&quot;>Aplikasi Mod Premium</div>
+        <div class=&quot;service-arrow&quot;>
+          <svg width=&quot;18&quot; height=&quot;18&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;><path d=&quot;M7 17L17 7M17 7H7M17 7v10&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/></svg>
+        </div>
+      </div>
+      <div class=&quot;service-item&quot;>
+        <div class=&quot;service-num&quot;>05.</div>
+        <div class=&quot;service-name&quot;>Top Up Game</div>
+        <div class=&quot;service-arrow&quot;>
+          <svg width=&quot;18&quot; height=&quot;18&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;><path d=&quot;M7 17L17 7M17 7H7M17 7v10&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class=&quot;glow-orb&quot; style=&quot;background:var(--accent);width:200px;height:200px;opacity:.05;top:50%;left:100%;transform:translate(-50%,-50%);animation:pulse 5s ease-in-out infinite;&quot;></div>
+</section>
 
+<!-- ── CONTACT ── -->
+<section id=&quot;contact&quot;>
+  <div class=&quot;glow-orb&quot;></div>
+  <div class=&quot;section-inner&quot;>
+    <div class=&quot;contact-content reveal&quot;>
+      <div class=&quot;contact-title&quot;>Let's Talk</div>
+      <div class=&quot;contact-sub-title&quot;>hello@aqilhayyan</div>
+      <div class=&quot;contact-cards&quot;>
+        <a href=&quot;https://wa.me/6285712259432&quot; target=&quot;_blank&quot; class=&quot;contact-card&quot;>
+          <div class=&quot;contact-card-icon&quot;>
+            <svg width=&quot;22&quot; height=&quot;22&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;><path d=&quot;M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.27-1.64A11.94 11.94 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52zM12 22c-1.87 0-3.7-.5-5.3-1.44l-.38-.23-3.94 1.03 1.05-3.83-.25-.4A9.93 9.93 0 0 1 2 12C2 6.48 6.48 2 12 2c2.67 0 5.18 1.04 7.07 2.93A9.94 9.94 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.44-7.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51H7.5c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.09 4.5.71.31 1.27.49 1.7.63.72.23 1.37.2 1.89.12.58-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.34z&quot; fill=&quot;currentColor&quot;/></svg>
+          </div>
+          085712259432
+        </a>
+        <a href=&quot;mailto:qilhayyanz@gmail.com&quot; class=&quot;contact-card&quot;>
+          <div class=&quot;contact-card-icon&quot;>
+            <svg width=&quot;22&quot; height=&quot;22&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;><path d=&quot;M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot;/><path d=&quot;M22 6l-10 7L2 6&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot;/></svg>
+          </div>
+          qilhayyanz@gmail.com
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
 <footer>
-  © 2026 Agronomy Culture | SMK Negeri 1 Bulakamba &nbsp;·&nbsp; Portal Pertanian Digital
+  <div class=&quot;footer-row&quot; style=&quot;width:100%&quot;>
+    <div class=&quot;footer-logo&quot;>AQIL HAYYAN</div>
+    <div class=&quot;footer-bottom&quot;>
+      <span>© 2025 Aqil Hayyan M.P — All rights reserved</span>
+      <div style=&quot;display:flex;gap:16px;&quot;>
+        <a href=&quot;https://wa.me/6285712259432&quot; target=&quot;_blank&quot; style=&quot;color:rgba(255,255,255,.4);text-decoration:none;font-size:13px;transition:color .3s;&quot; onmouseover=&quot;this.style.color='#c9f31d'&quot; onmouseout=&quot;this.style.color='rgba(255,255,255,.4)'&quot;>WhatsApp</a>
+        <a href=&quot;mailto:qilhayyanz@gmail.com&quot; style=&quot;color:rgba(255,255,255,.4);text-decoration:none;font-size:13px;transition:color .3s;&quot; onmouseover=&quot;this.style.color='#c9f31d'&quot; onmouseout=&quot;this.style.color='rgba(255,255,255,.4)'&quot;>Gmail</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
 <script>
-// =========== INTRO ANIMATION ===========
-(function(){
-  var intro = document.getElementById('introScreen');
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
 
-  // Create floating leaf particles
-  for(var i = 0; i < 18; i++){
-    var p = document.createElement('div');
-    p.className = 'intro-particle';
-    p.style.left = (Math.random() * 100) + 'vw';
-    p.style.width = (6 + Math.random() * 10) + 'px';
-    p.style.height = (6 + Math.random() * 10) + 'px';
-    p.style.animationDuration = (3 + Math.random() * 3) + 's';
-    p.style.animationDelay = (Math.random() * 4) + 's';
-    intro.appendChild(p);
-  }
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
+});
+function animRing() {
+  rx += (mx - rx - 18) * 0.15;
+  ry += (my - ry - 18) * 0.15;
+  ring.style.transform = `translate(${rx}px, ${ry}px)`;
+  requestAnimationFrame(animRing);
+}
+animRing();
 
-  // Dismiss after 5 seconds
-  setTimeout(function(){
-    intro.classList.add('fadeout');
-    setTimeout(function(){
-      intro.style.display = 'none';
-    }, 800);
-  }, 5000);
+// Hover cursor
+document.querySelectorAll('a, button, .service-item').forEach(el => {
+  el.addEventListener('mouseenter', () => { cursor.style.transform += ' scale(2.5)'; ring.style.opacity='0.2'; });
+  el.addEventListener('mouseleave', () => { ring.style.opacity='0.6'; });
+});
 
-  // Also allow click to skip
-  intro.addEventListener('click', function(){
-    intro.classList.add('fadeout');
-    setTimeout(function(){ intro.style.display = 'none'; }, 800);
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
   });
-})();
+}, { threshold: 0.12 });
+reveals.forEach(el => obs.observe(el));
 
-// =========== DATA ===========
-const plantsData=[
-  {id:'padi',name:'Padi',emoji:'🌾',season:'hujan',pb:'pb-hujan',sl:'Musim Hujan',tags:['Pangan','Sawah'],desc:'Tanaman pangan utama Indonesia',detail:'Padi adalah tanaman paling strategis di Indonesia. Varietas unggulan seperti IR64, Ciherang, dan Inpari cocok untuk berbagai agroekosistem sawah.',cara:'Persemaian 20-25 hari → transplanting → pemupukan dasar → penyulaman → pemupukan susulan → pengendalian OPT → panen 100-115 HST.',pupuk:'Urea 200 kg/ha, SP-36 100 kg/ha, KCl 100 kg/ha. Kompos 2 ton/ha saat olah tanah.'},
-  {id:'jagung',name:'Jagung',emoji:'🌽',season:'kemarau',pb:'pb-kemarau',sl:'Musim Kemarau',tags:['Pangan','Ladang'],desc:'Palawija utama, sumber karbohidrat',detail:'Jagung sangat adaptif di musim kemarau. Varietas hibrida BISI-18, Pioneer P21 memberikan hasil 8-12 ton/ha di lahan kering.',cara:'Olah tanah → buat lubang jarak 75x25 cm → tanam 2 biji → penjarangan hari ke-14 → pupuk dasar → pupuk susulan → panen 90-100 HST.',pupuk:'Urea 300 kg/ha, SP-36 150 kg/ha, KCl 100 kg/ha. Pupuk hayati Rhizobium untuk memperbaiki serapan N.'},
-  {id:'kangkung',name:'Kangkung',emoji:'🥬',season:'all-season',pb:'pb-all',sl:'Sepanjang Tahun',tags:['Sayuran','Cepat Panen'],desc:'Sayuran hijau, panen 25-30 hari',detail:'Kangkung darat dan air keduanya mudah ditanam sepanjang tahun. Modal kecil, panen cepat 25-30 hari, permintaan pasar stabil.',cara:'Tabur benih di bedengan atau pot → siram 2x/hari → panen perdana 25-30 HST → panen ulang tiap 10-14 hari.',pupuk:'Pupuk kandang 10 ton/ha + Urea 100 kg/ha. Semprot pupuk daun seminggu sekali.'},
-  {id:'cabai',name:'Cabai',emoji:'🌶️',season:'kemarau',pb:'pb-kemarau',sl:'Musim Kemarau',tags:['Sayuran','Nilai Tinggi'],desc:'Komoditas strategis bernilai ekonomi tinggi',detail:'Cabai merah dan rawit — komoditas fluktuatif namun menguntungkan. Butuh sinar matahari penuh dan drainase baik.',cara:'Persemaian 30 hari → transplanting → ajir saat 3 minggu → pemangkasan tunas air → panen mulai 75-80 HST.',pupuk:'NPK mutiara 300 kg/ha + pupuk kandang sapi 15 ton/ha. Pupuk daun 2x seminggu untuk merangsang bunga.'},
-  {id:'tomat',name:'Tomat',emoji:'🍅',season:'kemarau',pb:'pb-kemarau',sl:'Musim Kemarau',tags:['Sayuran','Buah'],desc:'Sumber vitamin C, dataran menengah-tinggi',detail:'Tomat paling baik di 200-1500 mdpl, suhu 20-27°C. Musim kemarau ideal karena mengurangi risiko penyakit jamur.',cara:'Persemaian 21-28 hari → pindah tanam → pasang ajir → buang tunas air → panen 70-90 HST.',pupuk:'Bertahap: pupuk dasar (kompos+SP-36), vegetatif (NPK tinggi N), generatif (NPK tinggi K+P).'},
-  {id:'kentang',name:'Kentang',emoji:'🥔',season:'tinggi',pb:'pb-tinggi',sl:'Dataran Tinggi',tags:['Umbi','Dataran Tinggi'],desc:'Tanaman umbi dataran tinggi >800 mdpl',detail:'Kentang tumbuh optimal di atas 800 mdpl (Dieng, Batu, Karo). Suhu ideal 15-20°C. Varietas Granola L populer.',cara:'Siapkan bibit mata 25-40 g → tanam jarak 75x25 cm → hilling (timbun) saat 3 minggu → pengendalian busuk daun → panen 90-100 HST.',pupuk:'Pupuk kandang ayam 20 ton/ha + NPK 15-15-15 dosis 500 kg/ha. Kalsium penting untuk kualitas umbi.'},
-  {id:'semangka',name:'Semangka',emoji:'🍉',season:'kemarau',pb:'pb-kemarau',sl:'Musim Kemarau',tags:['Buah','Nilai Tinggi'],desc:'Buah musim kemarau, potensi 20-30 ton/ha',detail:'Semangka butuh sinar matahari penuh dan cuaca kering. 65-80 hari panen, menghasilkan 20-30 ton/ha.',cara:'Persemaian polybag → transplanting jarak 2x2m → mulsa → pollinator manual → seleksi 2 buah/tanaman → panen saat kulit mengkilap.',pupuk:'Pupuk dasar lengkap saat tanam, NPK tinggi K saat buah membesar untuk rasa manis.'},
-  {id:'bayam',name:'Bayam',emoji:'🌿',season:'all-season',pb:'pb-all',sl:'Sepanjang Tahun',tags:['Sayuran','Mudah Tanam'],desc:'Bergizi tinggi, tumbuh di mana saja',detail:'Bayam toleran suhu 25-35°C. Bisa tumbuh kapan saja. Varietas hijau dan merah populer di pasar.',cara:'Tabur langsung → siram 2x/hari → panen parsial mulai 25 hari atau cabut 30-35 HST.',pupuk:'Pupuk kandang 5 ton/ha + Urea 150 kg/ha. Nitrogen tinggi untuk daun hijau lebat.'},
-  {id:'kopi',name:'Kopi',emoji:'☕',season:'tinggi',pb:'pb-tinggi',sl:'Dataran Tinggi',tags:['Perkebunan','Ekspor'],desc:'Komoditas ekspor unggulan dataran tinggi',detail:'Arabika optimal 1000-1700 mdpl, Robusta 400-800 mdpl. Indonesia penghasil kopi ke-4 dunia.',cara:'Pembibitan 6 bulan → tanam di lubang 60x60x60 cm → naungan pohon → pemangkasan tahunan → panen merah selektif.',pupuk:'Pupuk organik dominan + NPK 3x/tahun. Pupuk berimbang jaga kualitas cita rasa specialty.'},
-  {id:'pakcoy',name:'Pakcoy',emoji:'🥦',season:'all-season',pb:'pb-all',sl:'Sepanjang Tahun',tags:['Sayuran','Hidroponik'],desc:'Ideal untuk hidroponik dan lahan sempit',detail:'Pakcoy populer untuk pertanian urban dan hidroponik. Panen 30-45 hari. Cocok NFT atau DFT.',cara:'Semai di rockwool → pindah ke sistem hidroponik atau bedengan → panen 30-40 HST.',pupuk:'AB Mix untuk hidroponik (EC 1.5-2.5 mS/cm, pH 5.5-6.5). Konvensional: pupuk kandang + NPK ringan.'},
-  {id:'singkong',name:'Singkong',emoji:'🍠',season:'hujan',pb:'pb-hujan',sl:'Musim Hujan',tags:['Umbi','Pangan'],desc:'Pangan ketiga Indonesia, sangat adaptif',detail:'Singkong toleran kekeringan dan tanah miskin. Ditanam luas seluruh Indonesia. Panen 8-12 bulan.',cara:'Stek batang 20-25 cm → tanam miring 45° → jarak 100x80 cm → guludan untuk drainase → panen tarik.',pupuk:'NPK + pupuk kandang saat tanam. Kalium tinggi untuk pembentukan pati umbi.'},
-  {id:'bawang',name:'Bawang Merah',emoji:'🧅',season:'kemarau',pb:'pb-kemarau',sl:'Musim Kemarau',tags:['Sayuran','Rempah'],desc:'Bumbu dapur strategis, nilai ekonomi tinggi',detail:'Paling produktif di musim kemarau dengan irigasi terkontrol. Sentra Brebes, Nganjuk, Palu. Panen 60-70 HST.',cara:'Siapkan bibit umbi → tanam di bedengan jarak 15-20 cm → irigasi tetes 2x/minggu → panen saat 80% daun menguning.',pupuk:'Pupuk kandang 15 ton/ha + NPK mutiara 400 kg/ha. ZA untuk sulfur meningkatkan aroma dan daya simpan.'},
-];
-
-const guidesData=[
-  {icon:'🌱',title:'Persiapan Lahan',sub:'Fondasi sukses bertani',desc:'Lahan yang siap tanam adalah kunci produktivitas tinggi.',steps:['Bersihkan lahan dari gulma dan sisa tanaman','Bajak/cangkul sedalam 25-30 cm untuk aerasi','Buat bedengan lebar 100-120 cm, tinggi 20-30 cm','Kapur pertanian jika pH tanah <5.5 (1-2 ton/ha)','Inkorporasi pupuk kandang matang 2-3 minggu sebelum tanam','Buat saluran drainase untuk cegah genangan']},
-  {icon:'🌊',title:'Pengairan & Irigasi',sub:'Air adalah nyawa tanaman',desc:'Manajemen air yang tepat hemat biaya dan meningkatkan hasil.',steps:['Irigasi tetes hemat air 40-60% dibanding banjir','Siram pagi 06.00-08.00 atau sore 16.00-18.00','Hindari daun basah malam hari untuk cegah jamur','Sesuaikan frekuensi irigasi dengan fase tumbuh','Pasang mulsa plastik untuk kurangi evaporasi','Monitor kelembaban tanah secara rutin']},
-  {icon:'🐛',title:'Pengendalian Hama',sub:'Panen penuh tanpa hama',desc:'PHT (Pengendalian Hama Terpadu) untuk pertanian berkelanjutan.',steps:['Monitor kebun rutin setiap 3 hari sekali','Pasang perangkap feromon dan yellow sticky trap','Manfaatkan musuh alami (Trichogramma, predator)','Semprot pestisida nabati (mimba, bawang putih) sebagai pencegahan','Rotasi pestisida kimia untuk hindari resistensi','Catat log monitoring populasi hama']},
-  {icon:'✂️',title:'Pemangkasan & Penyiangan',sub:'Merawat tanaman agar produktif',desc:'Meningkatkan sirkulasi udara dan mengurangi kompetisi hara.',steps:['Siangi gulma saat 1-2 minggu setelah tanam','Gunakan cangkul atau herbisida selektif','Buang tunas air pada cabai, tomat, terong rutin','Pangkas cabang sakit atau terserang penyakit','Semprot luka pangkas dengan fungisida','Jadikan sisa pangkasan sebagai kompos/mulsa']},
-  {icon:'🌿',title:'Pergiliran Tanaman',sub:'Jaga kesuburan tanah jangka panjang',desc:'Rotasi tanam mencegah penumpukan penyakit dan menjaga nutrisi.',steps:['Rotasi tanaman berbeda famili tiap musim','Pola: padi → palawija → sayuran → kembali padi','Sisipkan legum (kacang, kedelai) untuk fiksasi N','Bero/istirahatkan lahan minimal 1 musim tiap 3-4 tahun','Tanam penutup tanah saat bero','Catat riwayat tanam untuk perencanaan berikut']},
-  {icon:'📊',title:'Pascapanen & Pemasaran',sub:'Nilai lebih dari hasil panen',desc:'Penanganan pascapanen baik menjaga kualitas dan harga jual.',steps:['Panen pagi hari saat suhu sejuk','Sortasi berdasarkan ukuran dan kualitas','Simpan di suhu sesuai atau cool room','Olahan primer: keripik, tepung, simplisia','Bangun kemitraan atau bergabung koperasi','Manfaatkan platform digital (TaniHub, Sayurbox)']},
-];
-
-const pupukData={
-  organik:[
-    {icon:'🐄',name:'Pupuk Kandang Sapi',type:'Organik',desc:'N 0.5%, P 0.25%, K 0.5%. Memperbaiki struktur tanah. Dosis 10-20 ton/ha.'},
-    {icon:'🐔',name:'Pupuk Kandang Ayam',type:'Organik',desc:'N 1.7%, P 1.9%, K 1.5%. Nutrisi tinggi, perlu fermentasi matang. Dosis 5-10 ton/ha.'},
-    {icon:'🍂',name:'Kompos',type:'Organik',desc:'Bahan organik terdekomposisi. pH netral, meningkatkan CEC tanah. 5-10 ton/ha.'},
-    {icon:'🟤',name:'Bokashi',type:'Organik',desc:'Fermentasi EM4. Kaya mikroba bermanfaat. Proses 10-14 hari. Dosis 3-5 ton/ha.'},
-    {icon:'🌊',name:'Pupuk Cair Organik',type:'Organik',desc:'Fermentasi urin sapi/kambing. Kaya hormon alami. Encerkan 1:10 untuk semprot.'},
-  ],
-  kimia:[
-    {icon:'🔵',name:'Urea (46% N)',type:'Kimia',desc:'Sumber nitrogen utama. Merangsang pertumbuhan vegetatif. Gunakan bertahap.'},
-    {icon:'🟡',name:'SP-36 (36% P₂O₅)',type:'Kimia',desc:'Sumber fosfor. Merangsang pembungaan dan perakaran kuat. Campur tanah saat tanam.'},
-    {icon:'🔴',name:'KCl (60% K₂O)',type:'Kimia',desc:'Sumber kalium. Menguatkan batang dan meningkatkan kualitas buah. 100-150 kg/ha.'},
-    {icon:'⚪',name:'NPK Mutiara 16-16-16',type:'Kimia',desc:'Pupuk lengkap seimbang. Praktis untuk petani pemula. Dosis 200-400 kg/ha.'},
-    {icon:'🟢',name:'ZA (21% N, 24% S)',type:'Kimia',desc:'Nitrogen + sulfur. Cocok bawang dan rempah untuk aroma. Dosis 150-200 kg/ha.'},
-  ],
-  hayati:[
-    {icon:'🦠',name:'Rhizobium',type:'Hayati',desc:'Bakteri pengikat N bebas di akar legum. Kurangi kebutuhan urea 30-50%.'},
-    {icon:'🍄',name:'Mikoriza',type:'Hayati',desc:'Fungi simbiosis akar. Tingkatkan serapan P dan air hingga 60%.'},
-    {icon:'🧫',name:'Trichoderma',type:'Hayati',desc:'Agen biokontrol patogen tanah. Menekan Fusarium & Pythium.'},
-    {icon:'🔬',name:'EM4',type:'Hayati',desc:'Effective Microorganism. Percepat dekomposisi, menekan patogen, tingkatkan kesuburan.'},
-  ]
-};
-
-const tipsData=[
-  {color:'green',icon:'🌡️',title:'Mengenal pH Tanah',text:'pH optimal 6.0-7.0. Tanah asam perlu dolomit/kapur. Tanah basa perlu sulfur atau bahan organik. Cek dengan pH meter.'},
-  {color:'yellow',icon:'💧',title:'Konservasi Air',text:'Mulsa organik mengurangi penguapan 50-70%. Irigasi tetes lebih efisien. Buat biopori untuk meningkatkan resapan.'},
-  {color:'blue',icon:'🧬',title:'Pemilihan Benih Unggul',text:'Gunakan benih bersertifikat. Uji viabilitas: rendam di air — benih tenggelam = benih hidup. Perlakuan fungisida sebelum tanam.'},
-  {color:'orange',icon:'📱',title:'Pertanian Digital',text:'Gunakan app KATAM BMKG untuk jadwal tanam. Marketplace (TaniHub, Agromaret) memotong rantai distribusi.'},
-  {color:'green',icon:'♻️',title:'Pertanian Organik',text:'Sertifikasi organik buka peluang harga premium 30-100% lebih tinggi. Konversi butuh 2-3 tahun.'},
-  {color:'yellow',icon:'🌾',title:'Diversifikasi Usahatani',text:'Kombinasikan pangan, hortikultura, dan ternak untuk spread risiko. Model terpadu meningkatkan efisiensi input.'},
-  {color:'blue',icon:'🏗️',title:'Greenhouse & Screenhouse',text:'Investasi greenhouse payback 2-3 tahun untuk sayuran premium. Screenhouse melindungi dari hujan asam dan serangga.'},
-  {color:'orange',icon:'📈',title:'Analisis Usahatani',text:'Catat semua biaya dan penerimaan. Hitung B/C Ratio — minimal 1.5 untuk usahatani layak. Identifikasi komponen biaya terbesar.'},
-];
-
-const jadwalData=[
-  {bln:'Jan–Feb',icon:'🌧️',act:'Tanam padi sawah, sayuran daun'},
-  {bln:'Mar–Apr',icon:'🌱',act:'Persemaian jagung, kedelai'},
-  {bln:'Mei–Jun',icon:'☀️',act:'Tanam jagung, cabai, kacang'},
-  {bln:'Jul–Agu',icon:'🔥',act:'Panen jagung, tanam semangka'},
-  {bln:'Sep–Okt',icon:'🌤️',act:'Persiapan lahan musim hujan'},
-  {bln:'Nov–Des',icon:'🌾',act:'Panen padi, tanam bawang'},
-];
-
-const musimModal={
-  hujan:{icon:'🌧️',name:'Musim Hujan',sub:'November – April | Curah hujan 200-400mm/bulan',info:'Musim hujan membawa berkah air untuk sawah dan tanaman pangan. Kelembaban tinggi 80-90% mendukung pertumbuhan. Waspadai penyakit jamur dan busuk akar.',tanaman:['Padi sawah (IR64, Ciherang, Inpari)','Kangkung, bayam, sawi hijau','Taro, talas, ubi jalar','Jahe, kunyit, temulawak','Singkong dan ubi kayu'],waspadai:['Penyakit blast dan hawar daun pada padi','Layu fusarium dan busuk akar','Genangan air pada lahan drainase buruk','Hama wereng dan tikus pada padi']},
-  kemarau:{icon:'☀️',name:'Musim Kemarau',sub:'Mei – Oktober | Curah hujan <60mm/bulan',info:'Musim kemarau ideal untuk palawija, buah, dan sayuran yang butuh sinar matahari penuh. Irigasi menjadi kunci. Suhu siang 35-38°C di beberapa wilayah.',tanaman:['Jagung hibrida dan manis','Cabai merah dan rawit','Semangka, melon, timun','Kacang tanah dan kedelai','Bawang merah dan bawang putih'],waspadai:['Kekeringan dan layu tanaman','Serangan ulat grayak dan thrips','Virus mozaik pada cabai','Stres panas pada tanaman muda']},
-  pancaroba:{icon:'🌤️',name:'Musim Pancaroba',sub:'April–Mei dan Oktober–November | Peralihan',info:'Cuaca tidak menentu. Hujan tiba-tiba setelah kemarau, angin kencang, fluktuasi suhu ekstrem memicu ledakan hama dan penyakit.',tanaman:['Singkong (tahan stress)','Kangkung, bayam (cepat panen)','Padi gogo rancah untuk lahan kering','Sorgum sebagai alternatif pangan'],waspadai:['Ledakan populasi wereng, kutu daun','Serangan jamur tiba-tiba','Kerusakan fisik akibat angin kencang','Fluktuasi cuaca mengacaukan jadwal tanam']},
-  tinggi:{icon:'⛰️',name:'Dataran Tinggi',sub:'>800 mdpl | Suhu 15–25°C sepanjang tahun',info:'Iklim sejuk stabil sepanjang tahun. Kabut pagi hari dan curah hujan merata mendukung tanaman premium bernilai ekspor tinggi.',tanaman:['Kopi Arabika (1000-1700 mdpl)','Teh (>1000 mdpl)','Kentang, wortel, brokoli','Stroberi dan blueberry','Kubis, bawang daun, seledri'],waspadai:['Embun beku puncak musim kemarau','Busuk daun kentang (Phytophthora)','Kabut tebal mengurangi fotosintesis','Hama kutu daun di suhu sejuk']},
-};
-
-// =========== RENDER ===========
-function renderPlants(data){
-  document.getElementById('plantsGrid').innerHTML=data.map(p=>`
-    <div class="plant-card-g" onclick="openPlantModal('${p.id}')">
-      <div class="plant-thumb-g" style="background:${thumbBg(p.season)}">
-        ${p.emoji}
-        <span class="p-badge ${p.pb}">${p.sl}</span>
-      </div>
-      <div class="plant-info-g">
-        <h4>${p.name}</h4>
-        <p>${p.desc}</p>
-        <div class="ptags">${p.tags.map(t=>`<span class="ptag">${t}</span>`).join('')}</div>
-      </div>
-    </div>`).join('');
-}
-
-function thumbBg(s){
-  return {hujan:'rgba(21,101,192,0.25)',kemarau:'rgba(230,81,0,0.25)','all-season':'rgba(46,125,50,0.25)',tinggi:'rgba(74,20,140,0.25)'}[s]||'rgba(255,255,255,0.1)';
-}
-
-function renderGuides(){
-  document.getElementById('guideGrid').innerHTML=guidesData.map(g=>`
-    <div class="guide-card-g">
-      <div class="g-icon">${g.icon}</div>
-      <h3>${g.title}</h3>
-      <p class="g-desc">${g.desc}</p>
-      <ol class="step-list">
-        ${g.steps.map((s,i)=>`<li><span class="snum">${i+1}</span>${s}</li>`).join('')}
-      </ol>
-    </div>`).join('');
-}
-
-function renderPupuk(){
-  ['organik','kimia','hayati'].forEach(t=>{
-    const id='pupuk'+t[0].toUpperCase()+t.slice(1);
-    document.getElementById(id).innerHTML=pupukData[t].map(p=>`
-      <div class="fert-card-g">
-        <div class="fi">${p.icon}</div>
-        <div class="ftype ft-${t}">${p.type}</div>
-        <h4>${p.name}</h4>
-        <p>${p.desc}</p>
-      </div>`).join('');
-  });
-}
-
-function renderTips(){
-  document.getElementById('tipsGrid').innerHTML=tipsData.map(t=>`
-    <div class="tip-g ${t.color}"><h4>${t.icon} ${t.title}</h4><p>${t.text}</p></div>`).join('');
-  document.getElementById('jadwalGrid').innerHTML=jadwalData.map(j=>`
-    <div class="jcard"><div class="ji">${j.icon}</div><strong>${j.bln}</strong><p>${j.act}</p></div>`).join('');
-}
-
-// =========== SECTION NAV ===========
-var allSections = ['beranda','kegiatan','angkatan','alumni','galeri','panduan'];
-var allNavBtns = ['navBtn0','navBtn1','navBtn2','navBtn3','navBtn4','navBtn5'];
-var allTaniPanels = ['tani-musim','tani-tanaman','tani-budidaya','tani-pupuk','tani-tips'];
-var allTaniTabs = ['taniTab0','taniTab1','taniTab2','taniTab3','taniTab4'];
-
-function showSection(id, el){
-  for(var i=0; i<allSections.length; i++){
-    var s = document.getElementById(allSections[i]);
-    if(s) s.style.display = 'none';
-  }
-  for(var i=0; i<allNavBtns.length; i++){
-    var b = document.getElementById(allNavBtns[i]);
-    if(b) b.style.borderBottom = '3px solid transparent';
-    if(b) b.style.color = 'rgba(255,255,255,0.85)';
-  }
-  var target = document.getElementById(id);
-  if(target) target.style.display = 'block';
-  if(el){ el.style.borderBottom = '3px solid #4caf50'; el.style.color = '#a4ffb0'; }
-  window.scrollTo(0,0);
-}
-
-function goToPanduan(tab){
-  showSection('panduan', document.getElementById('navBtn5'));
-  showTani(tab, null);
-}
-
-function showTani(id, btn){
-  for(var i=0; i<allTaniPanels.length; i++){
-    var p = document.getElementById(allTaniPanels[i]);
-    if(p) p.style.display = 'none';
-  }
-  for(var i=0; i<allTaniTabs.length; i++){
-    var b = document.getElementById(allTaniTabs[i]);
-    if(b){ b.style.background='rgba(255,255,255,0.06)'; b.style.color='rgba(255,255,255,0.75)'; }
-  }
-  var panel = document.getElementById('tani-'+id);
-  if(panel) panel.style.display = 'block';
-  if(btn){ btn.style.background='rgba(144,238,144,0.18)'; btn.style.color='#fff'; }
-}
-
-function filterByTag(tag,btn){
-  document.querySelectorAll('.filter-btn-g').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderPlants(tag==='all'?plantsData:plantsData.filter(p=>p.season===tag));
-}
-
-function filterPlants(q){
-  renderPlants(plantsData.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())||p.desc.toLowerCase().includes(q.toLowerCase())));
-}
-
-// =========== MODALS ===========
-function openMusimModal(id){
-  const d=musimModal[id]; if(!d) return;
-  document.getElementById('modalBox').innerHTML=`
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <div class="mi">${d.icon}</div>
-    <h2>${d.name}</h2>
-    <p class="msub">${d.sub}</p>
-    <div class="msec"><h4>Karakteristik Iklim</h4><p>${d.info}</p></div>
-    <div class="msec"><h4>Tanaman Unggulan</h4>
-      <ul class="mlist">${d.tanaman.map(t=>`<li>${t}</li>`).join('')}</ul>
-    </div>
-    <div class="msec"><h4>⚠️ Yang Perlu Diwaspadai</h4>
-      <ul class="mlist">${d.waspadai.map(w=>`<li>${w}</li>`).join('')}</ul>
-    </div>`;
-  document.getElementById('modalOverlay').classList.add('open');
-}
-
-function openPlantModal(id){
-  const p=plantsData.find(x=>x.id===id); if(!p) return;
-  document.getElementById('modalBox').innerHTML=`
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <div class="mi">${p.emoji}</div>
-    <h2>${p.name}</h2>
-    <p class="msub">Musim Tanam: ${p.sl}</p>
-    <div class="msec"><h4>Tentang Tanaman</h4><p>${p.detail}</p></div>
-    <div class="msec"><h4>Cara Budidaya</h4><p>${p.cara}</p></div>
-    <div class="msec"><h4>Rekomendasi Pemupukan</h4><p>${p.pupuk}</p></div>`;
-  document.getElementById('modalOverlay').classList.add('open');
-}
-
-function closeModal(){ document.getElementById('modalOverlay').classList.remove('open'); }
-function closeBg(e){ if(e.target.id==='modalOverlay') closeModal(); }
-
-// Angkatan
-function showAngkatan(t){
-  document.getElementById('angkatanDetail').innerHTML=`
-    <h2>Angkatan ${t}</h2>
-    <p><b>Kelas A</b></p>
-    <img src="angkatan${t}A.jpg" width="100%" style="border-radius:15px;margin:10px 0;" onerror="this.style.display='none'">
-    <p><b>Kelas B</b></p>
-    <img src="angkatan${t}B.jpg" width="100%" style="border-radius:15px;margin:10px 0;" onerror="this.style.display='none'">`;
-}
-
-// =========== ALUMNI ===========
-// ---- DATA BIODATA ALUMNI ----
-// Untuk menambah biodata alumni baru, tambahkan entri dengan key = nama alumni
-var alumniData = {
-  'Syafa': {
-    nama: 'Syafa',
-    tahun: '2026',
-    asalSekolah: 'SMK Negeri 1 Bulakamba',
-    jurusan: 'Agribisnis Tanaman Pangan dan Hortikultura (ATPH)',
-    kesanPesan: 'Selama sekolah di SMK Negeri 1 Bulakamba jurusan Agribisnis Tanaman Pangan dan Hortikultura, kami dapat belajar menghadapi hal² baru melalui berbagai pengalaman berharga. Salah satunya pada gladi lapang karena dari situ kami belajar bahwa proses yang berat akan membentuk mental yang lebih siap menghadapi masa depan, sehingga semua tantangan dan rasa lelah yang dijalani menjadi pelajaran yang sangat berguna untuk kehidupan nanti..'
-  },
-  // Tambahkan alumni lain di sini nanti, contoh:
-  // 'Arul': {
-  //   nama: 'Arul',
-  //   tahun: '2025',
-  //   asalSekolah: 'SMK Negeri 1 Bulakamba',
-  //   jurusan: 'Agribisnis Tanaman Pangan dan Hortikultura (ATPH)',
-  //   kesanPesan: '...'
-  // },
-};
-
-// Untuk menambah foto alumni, tambahkan entri { src: 'namafile.jpg', name: 'Nama' } di array photos
-var alumniConfig = {
-  '2026': {
-    label: 'Lulusan 2026',
-    photos: [
-      { src: 'alumnisyafa26.png', name: 'Syafa' },
-      // { src: 'alumni2026_2.jpg', name: 'Nama Alumni' },
-      // { src: 'alumni2026_3.jpg', name: 'Nama Alumni' },
-    ],
-    caption: 'Alumni angkatan 2026 — Agronomy Culture SMKN 1 Bulakamba'
-  },
-  '2025': {
-    label: 'Lulusan 2025',
-    photos: [
-      { src: 'alumniarul25.jpeg', name: 'Arul' },
-      // { src: 'alumni2025_2.jpg', name: 'Nama Alumni' },
-      // { src: 'alumni2025_3.jpg', name: 'Nama Alumni' },
-    ],
-    caption: 'Alumni angkatan 2025 — Agronomy Culture SMKN 1 Bulakamba'
-  }
-};
-
-function showAlumni(tahun, btn) {
-  document.querySelectorAll('.alumni-year-btn').forEach(function(b){
-    b.classList.remove('active');
-  });
-  if(btn) btn.classList.add('active');
-
-  var cfg = alumniConfig[tahun];
-  if(!cfg) return;
-
-  var gridItems = cfg.photos.map(function(p){
-    return '<div class="alumni-grid-item" onclick="openAlumniModal(\'' + p.name + '\', \'' + p.src + '\')" title="Klik untuk lihat profil ' + p.name + '">' +
-      '<img src="' + p.src + '" alt="' + p.name + '" onerror="this.style.display=\'none\'">' +
-      '<div class="alumni-name-tag">' + p.name + '</div>' +
-      '<div style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.5);border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:14px;">🔍</div>' +
-      '</div>';
-  }).join('');
-
-  document.getElementById('alumniDetail').innerHTML =
-    '<div class="alumni-photo-wrap">' +
-      '<h2>🎓 ' + cfg.label + '</h2>' +
-      '<p style="font-size:12px;opacity:0.5;margin-bottom:4px;">✨ Klik foto untuk melihat profil lengkap</p>' +
-      '<div class="alumni-grid">' + gridItems + '</div>' +
-      '<div class="alumni-caption-bar">' + cfg.caption + '</div>' +
-    '</div>';
-}
-
-function openAlumniModal(name, src) {
-  var d = alumniData[name];
-  var modalOverlay = document.getElementById('alumniModalOverlay');
-  var modalBox = document.getElementById('alumniModalBox');
-
-  var biodataHtml = '';
-  if(d) {
-    biodataHtml =
-      '<div class="alumni-modal-info">' +
-        '<div class="alumni-modal-info-row"><span class="lbl">Nama</span><span class="val">' + d.nama + '</span></div>' +
-        '<div class="alumni-modal-info-row"><span class="lbl">Alumni Tahun</span><span class="val">' + d.tahun + '</span></div>' +
-        '<div class="alumni-modal-info-row"><span class="lbl">Asal Sekolah</span><span class="val">' + d.asalSekolah + '</span></div>' +
-        '<div class="alumni-modal-info-row"><span class="lbl">Jurusan</span><span class="val">' + d.jurusan + '</span></div>' +
-      '</div>' +
-      '<div class="alumni-modal-kesan">' +
-        '<div class="alumni-modal-kesan-label">💬 Kesan &amp; Pesan</div>' +
-        d.kesanPesan +
-      '</div>';
-  } else {
-    biodataHtml = '<p style="opacity:0.5;font-size:13px;">Biodata belum tersedia.</p>';
-  }
-
-  modalBox.innerHTML =
-    '<button class="alumni-modal-close" onclick="closeAlumniModal()">×</button>' +
-    '<img class="alumni-modal-photo" src="' + src + '" alt="' + name + '" onerror="this.style.display=\'none\'">' +
-    '<div class="alumni-modal-body">' +
-      '<div class="alumni-modal-name">' + name + '</div>' +
-      '<div class="alumni-modal-badge">🎓 Alumni ATPH</div>' +
-      biodataHtml +
-    '</div>';
-
-  modalOverlay.classList.add('open');
-}
-
-function closeAlumniModal() {
-  document.getElementById('alumniModalOverlay').classList.remove('open');
-}
-function closeAlumniBg(e) {
-  if(e.target.id === 'alumniModalOverlay') closeAlumniModal();
-}
-
-// =========== INIT ===========
-for(var i=0; i<allSections.length; i++){
-  var s = document.getElementById(allSections[i]);
-  if(s) s.style.display = 'none';
-}
-document.getElementById('beranda').style.display = 'block';
-
-for(var i=0; i<allTaniPanels.length; i++){
-  var p = document.getElementById(allTaniPanels[i]);
-  if(p) p.style.display = 'none';
-}
-document.getElementById('tani-musim').style.display = 'block';
-
-renderPlants(plantsData);
-renderGuides();
-renderPupuk();
-renderTips();
+// Staggered reveals for service items
+document.querySelectorAll('.service-item').forEach((el, i) => {
+  el.style.transitionDelay = `${i * 80}ms`;
+  el.style.opacity = '0';
+  el.style.transform = 'translateX(-30px)';
+  el.style.transition = 'opacity .5s ease, transform .5s ease, padding-left .35s ease, background .35s ease';
+  const itemObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateX(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  itemObs.observe(el);
+});
 </script>
-<!-- ===== ALUMNI PROFILE MODAL ===== -->
-<div id="alumniModalOverlay" onclick="closeAlumniBg(event)">
-  <div id="alumniModalBox"></div>
-</div>
+</body>
+</html>"
+    sandbox="allow-scripts allow-forms allow-modals allow-popups"
+    title="Shared Preview"
+  ></iframe>
 </body>
 </html>
